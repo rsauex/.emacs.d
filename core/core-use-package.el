@@ -1,4 +1,6 @@
-(require 'use-package)
+(unless (require 'use-package nil 'noerror)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 (add-to-list 'use-package-keywords :hooks)
 

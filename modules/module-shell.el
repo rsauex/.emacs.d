@@ -9,6 +9,7 @@
 
   ;; tab-completion for shell-command
   (use-package shell-command
+    :ensure t
     :config (shell-command-completion-mode))
 
   ;; C-d to kill buffer if process is dead.

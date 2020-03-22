@@ -7,6 +7,3 @@
 (use-package module-elisp)
 (use-package module-markdown)
 (use-package module-yaml)
-
-;; Use normal tabs in makefiles
-(add-hook 'makefile-mode-hook 'indent-tabs-mode)

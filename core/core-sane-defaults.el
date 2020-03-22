@@ -23,13 +23,6 @@
 ;; Answering just 'y' or 'n' will do
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;; UTF-8 please
-(setq locale-coding-system 'utf-8) ; pretty
-(set-terminal-coding-system 'utf-8) ; pretty
-(set-keyboard-coding-system 'utf-8) ; pretty
-(set-selection-coding-system 'utf-8) ; please
-(prefer-coding-system 'utf-8) ; with sugar on top
-
 ;; Show active region
 (transient-mark-mode 1)
 (make-variable-buffer-local 'transient-mark-mode)
@@ -42,15 +35,30 @@
 ;; Don't highlight matches with jump-char - it's distracting
 (setq jump-char-lazy-highlight-face nil)
 
-;; Save minibuffer history
-(savehist-mode 1)
-(setq history-length 1000)
-
 ;; Undo/redo window configuration with C-c <left>/<right>
 (winner-mode 1)
 
-;; Never insert tabs
-(set-default 'indent-tabs-mode nil)
+;; Disable recursive minibuffers
+(setq enable-recursive-minibuffers nil)
+
+;; Major mode for scratch buffer
+(setq initial-major-mode 'text-mode)
+
+;; No key suggesings
+(setq suggest-key-bindings nil)
+
+;; A saner ediff
+(setq ediff-diff-options "-w")
+(setq ediff-split-window-function 'split-window-horizontally)
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+;; Run at full power please
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+
+;; No electric indent
+(setq electric-indent-mode nil)
 
 ;; Show me empty lines after buffer end
 (set-default 'indicate-empty-lines t)
@@ -58,30 +66,15 @@
 ;; Easily navigate sillycased words
 (global-subword-mode 1)
 
-;; Don't be so stingy on the memory, we have lots now. It's the distant future.
-(setq gc-cons-threshold 20000000)
+;; Scroll
+(setq hscroll-margin 1
+      hscroll-step 1
+      scroll-conservatively 1001
+      scroll-margin 0
+      scroll-preserve-screen-position t)
 
-;; Sentences do not need double spaces to end. Period.
-(set-default 'sentence-end-double-space nil)
-
-;; A saner ediff
-(setq ediff-diff-options "-w")
-(setq ediff-split-window-function 'split-window-horizontally)
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
-
-;; No electric indent
-(setq electric-indent-mode nil)
-
-;; Nic says eval-expression-print-level needs to be set to nil (turned off) so
-;; that you can always see what's happening.
-(setq eval-expression-print-level nil)
-
-(setq set-mark-command-repeat-pop t)
-
-;; Run at full power please
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
-(put 'narrow-to-region 'disabled nil)
-
+;; Mouse scroll
+(setq mouse-wheel-scroll-amount '(5 ((shift) . 2))  ; one line at a time
+      mouse-wheel-progressive-speed nil)            ; don't accelerate scrolling
 
 (provide 'core-sane-defaults)

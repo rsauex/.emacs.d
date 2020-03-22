@@ -8,7 +8,7 @@
 
 (package-initialize)
 
-(unless (file-exists-p "~/.emacs.d/elpa/archives/melpa")
+(unless (file-exists-p (concat package-user-dir "archives/melpa"))
   (package-refresh-contents))
 
 (defun my-package-upgrade-all ()
