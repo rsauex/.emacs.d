@@ -1,8 +1,9 @@
 (use-package company
   :ensure t
   :diminish  company-mode
-  :commands (company-mode global-company-mode company-complete
-                          company-complete-common company-manual-begin company-grab-line))
+  :hooks ((after-init-hook . (global-company-mode)))
+  :config
+  (setq-default company-tooltip-align-annotations t))
 
 (use-package company-quickhelp
   :ensure t
