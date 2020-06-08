@@ -1,11 +1,13 @@
 (use-package dired
-  :after (dired-mode)
   :config
-  ;; Make dired less verbose
-  (use-package dired-details
-    :ensure t)
-  (setq-default dired-details-hidden-string "--- ")
-  (dired-details-install)
+
+  ;; Better font-locking
+  (use-package diredfl
+    :ensure t
+    :init (diredfl-global-mode))
+
+  ;; Better sorting
+  (setq dired-listing-switches "-lahv --group-directories-first")
 
   ;; Move files between split panes
   (setq dired-dwim-target t)
