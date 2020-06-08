@@ -7,3 +7,4 @@
 (use-package module-elisp)
 (use-package module-markdown)
 (use-package module-yaml)
+(use-package module-powershell)
