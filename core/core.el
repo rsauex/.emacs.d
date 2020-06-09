@@ -126,6 +126,12 @@
 (use-package s
   :ensure t)
 
+;;;; Tramp ---------------------------------------------------------------------
+
+(use-package tramp
+  :init
+  (setq tramp-default-method "ssh"))
+
 ;;;; Other core packages -------------------------------------------------------
 
 (use-package core-fonts)
