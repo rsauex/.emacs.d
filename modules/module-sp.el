@@ -1,8 +1,6 @@
-(use-package smartparens
-  :ensure t
+(use-package smartparens :ensure t
   :commands (smartparens-mode smartparens-strict-mode)
-  :hooks ((java-mode . (smartparens-mode))
-          (python-mode-hook . (smartparens-mode)))
-  :config (use-package setup-smartparens))
+  :hooks ((java-mode . (smartparens-mode)))
+  :config (require' smartparens-config))
 
 (provide 'module-sp)
