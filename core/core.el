@@ -79,8 +79,7 @@
 (setq history-delete-duplicates t)
 (setq savehist-save-minibuffer-history 1)
 (setq savehist-additional-variables
-      '(kill-ring
-        search-ring
+      '(search-ring
         regexp-search-ring))
 
 ;;;; Bookmarks ----------------------------------------------------------------
