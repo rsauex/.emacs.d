@@ -11,4 +11,4 @@
   :config
   (company-quickhelp-mode +1))
 
-(provide 'company-company)
+(provide 'core-company)
