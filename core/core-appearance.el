@@ -55,6 +55,11 @@
   (doom-themes-neotree-config)
   (doom-themes-org-config))
 
+(use-package doom-modeline
+  :ensure t
+  :config
+  (doom-modeline-mode 1))
+
 ;; Highlight current line
 (global-hl-line-mode 1)
 
