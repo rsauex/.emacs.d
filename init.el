@@ -9,3 +9,4 @@
 (use-package module-yaml)
 (use-package module-powershell)
 (use-package module-cc)
+(use-package module-python)
