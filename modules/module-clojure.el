@@ -3,8 +3,7 @@
 (use-package cider
   :ensure t
   ;;:commands (cider-mode cider-jack-in)
-  :hooks ((cider-mode-hook . (company-mode))
-          (cider-repl-mode-hook . (enable-paredit-mode company-mode)))
+  :hooks ((cider-repl-mode-hook . (enable-paredit-mode)))
   :init
   (setq cider-repl-history-file (expand-file-name "cider-history" my-cache-dir))
   (setq cider-repl-history-size 1000)

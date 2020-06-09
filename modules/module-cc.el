@@ -1,5 +1,3 @@
-(use-package module-company)
-
 (use-package ggtags
   :ensure t)
 

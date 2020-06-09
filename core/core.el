@@ -141,5 +141,6 @@
 (use-package core-ivy)
 (use-package core-editing)
 (use-package core-package)
+(use-package core-company)
 
 (provide 'core)

@@ -1,5 +1,4 @@
 (use-package module-paredit)
-(use-package module-company)
 
 (setq-default inferior-lisp-program "sbcl --dynamic-space-size 5120")
 
@@ -10,9 +9,8 @@
 (use-package slime
   :ensure t
   :commands (slime slime-mode slime-connect)
-  :hooks ((slime-mode-hook . (enable-paredit-mode company-mode))
+  :hooks ((slime-mode-hook . (enable-paredit-mode))
           (slime-repl-mode-hook . (enable-paredit-mode
-                                   company-mode
                                    (lambda () (define-key slime-repl-mode-map
                                                 (read-kbd-macro paredit-backward-delete-key) nil)))))
   :config (progn
@@ -34,7 +32,6 @@
   :defer t
   :hooks ((lisp-mode-hook . (enable-paredit-mode
                              slime-mode
-                             company-mode
                              lispy-mode))))
 
 (provide 'module-cl)
