@@ -5,10 +5,10 @@
   :config
   (setq-default company-tooltip-align-annotations t))
 
-(use-package company-quickhelp
+(use-package company-box
   :ensure t
-  :after company-mode
+  :hooks ((company-mode . (company-box-mode)))
   :config
-  (company-quickhelp-mode +1))
+  (setq company-box-enable-icon nil))
 
 (provide 'core-company)
