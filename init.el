@@ -10,3 +10,6 @@
 (use-package module-powershell)
 (use-package module-cc)
 (use-package module-python)
+
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
