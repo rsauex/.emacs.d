@@ -39,26 +39,36 @@
 ;; No splash screen please ... jeez
 (setq inhibit-startup-message t)
 
-(use-package doom-themes
-  :ensure t
-  :config
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t)
+(setq my-current-theme-is-dark t)
 
+(defun my-load-theme (theme)
   (if (daemonp)
       (add-hook 'after-make-frame-functions
                 (lambda (frame)
                   (with-selected-frame frame
-                    (load-theme 'doom-nord t))))
-    (load-theme 'doom-nord t))
+                    (load-theme theme t))))
+    (load-theme theme t))
   
   (doom-themes-neotree-config)
   (doom-themes-org-config))
+
+(use-package doom-themes
+  :ensure t
+  :config
+  (my-load-theme 'doom-nord))
 
 (use-package doom-modeline
   :ensure t
   :config
   (doom-modeline-mode 1))
+
+(defun my-toggle-light-theme ()
+  (interactive)
+  (my-load-theme
+   (if my-current-theme-is-dark
+       'doom-nord-light
+     'doom-nord))
+  (setq my-current-theme-is-dark (not my-current-theme-is-dark)))
 
 ;; Highlight current line
 (global-hl-line-mode 1)
