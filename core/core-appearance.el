@@ -27,7 +27,7 @@
 (csetq
   (blink-matching-paren nil) ; don't blink--too distracting
   (show-paren-delay 0.075)
-  (show-paren-highlight-openparen) t
+  (show-paren-highlight-openparen t)
   (show-paren-when-point-inside-paren t)
   (show-paren-mode 1))
 
@@ -60,7 +60,8 @@
 
 (use-package doom-modeline
   :ensure t
-  :config
+  :custom
+  (doom-modeline-height 30)
   (doom-modeline-mode 1))
 
 (defun my-toggle-light-theme ()
