@@ -130,6 +130,26 @@
   (dolist (fn (reverse functions))
     (add-hook hook fn)))
 
+;;;; History -------------------------------------------------------------------
+
+(use-package savehist
+  :custom
+  (history-length 50)
+  (history-delete-duplicates t)
+  (savehist-file (concat my-cache-dir "history"))
+  (savehist-additional-variables (list 'search-ring
+                                       'regexp-search-ring))
+  :config
+  (savehist-mode 1))
+
+;;;; Save point position between sessions --------------------------------------
+
+(use-package saveplace
+  :custom
+  (save-place-file (concat my-cache-dir "places"))
+  :config
+  (save-place-mode 1))
+
 ;;;; Uniquify buffer names -----------------------------------------------------
 
 (use-package uniquify
