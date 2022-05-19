@@ -1,11 +1,26 @@
 (use-package find-file-in-project
   :ensure t
   :defer 1
-  :config
-
+  :custom
+  (ffip-find-options
+   (ffip--create-exclude-find-options
+    '("/node_modules"
+      "/bower_components"
+      "/target"
+      "/out"
+      "/overlays"
+      "/build"
+      "/dist"
+      "/vendor"
+      ".cask"
+      "/generated"
+      "/resources/public/js/compiled"
+      "/.repl"
+      "/.tmp")))
   ;; No need to be stingy
-  (setq ffip-limit 4096)
-
+  (ffip-limit 4096)
+  
+  :config
   ;; Use full project path for ffip
 
   ;; (defun ffip-project-files ()
@@ -46,35 +61,17 @@
       (lambda ()
         (interactive)
         (let ((ffip-patterns patterns))
-          (find-file-in-project)))))
-
-  ;; Default excludes - override with ffip-local-excludes
-
-  (setq-default ffip-find-options
-                (ffip--create-exclude-find-options
-                 '("/node_modules"
-                   "/bower_components"
-                   "/target"
-                   "/out"
-                   "/overlays"
-                   "/build"
-                   "/dist"
-                   "/vendor"
-                   ".cask"
-                   "/generated"
-                   "/resources/public/js/compiled"
-                   "/.repl"
-                   "/.tmp")))) 
+          (find-file-in-project)))))) 
 
 ;; Magit
 (use-package magit
   :ensure t
   :commands (magit-status-fullscreen)
   :bind (("C-x m" . magit-status-fullscreen))
-  :init
-  (setq transient-levels-file  (concat my-cache-dir "transient/levels.el")
-        transient-values-file  (concat my-cache-dir "transient/values.el")
-        transient-history-file (concat my-cache-dir "transient/history.el"))
+  :custom
+  (transient-levels-file  (concat my-cache-dir "transient/levels.el"))
+  (transient-values-file  (concat my-cache-dir "transient/values.el"))
+  (transient-history-file (concat my-cache-dir "transient/history.el"))
   :config
   ;; full screen magit-status
   (defun magit-status-fullscreen (prefix)

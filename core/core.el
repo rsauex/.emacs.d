@@ -78,43 +78,31 @@
 
 ;;;; Folders & files -----------------------------------------------------------
 
-(setq-default
- auto-save-list-file-prefix  (concat my-cache-dir "auto-save-list/.saves-")
- server-auth-dir             (concat my-cache-dir "server/")
- thumbs-thumbsdir            (concat my-cache-dir "thumbs/")
- package-user-dir            (concat my-cache-dir "elpa/")
- tramp-persistency-file-name (concat my-cache-dir "tramp")
- recentf-save-file           (concat my-cache-dir "recentf")
- kkc-init-file-name          (concat my-cache-dir "kkcrc"))
+(csetq
+  (server-auth-dir             (concat my-cache-dir "server/"))
+  (thumbs-thumbsdir            (concat my-cache-dir "thumbs/"))
+  (recentf-save-file           (concat my-cache-dir "recentf"))
+  (kkc-init-file-name          (concat my-cache-dir "kkcrc")))
 
-;;;; History -------------------------------------------------------------------
+;;;; Auto save -----------------------------------------------------------------
 
-(setq savehist-file (concat my-cache-dir "history"))
-(savehist-mode 1)
-(setq history-length t)
-(setq history-delete-duplicates t)
-(setq savehist-save-minibuffer-history 1)
-(setq savehist-additional-variables
-      '(search-ring
-        regexp-search-ring))
+(csetq
+  (auto-save-list-file-prefix (concat my-cache-dir "auto-save-list/.saves-")))
 
-;;;; Bookmarks ----------------------------------------------------------------
+;;;; Bookmarks -----------------------------------------------------------------
 
-(setq bookmark-default-file (concat my-cache-dir "bookmarks"))
-(setq bookmark-save-flag t)
+(csetq
+  (bookmark-default-file (concat my-cache-dir "bookmarks"))
+  (bookmark-save-flag t))
 
 ;;;; Backups -------------------------------------------------------------------
 
-(setq backup-directory-alist `(("." . ,my-backup-dir))
-      delete-old-versions  t
-      kept-new-versions  6
-      kept-old-versions  2
-      version-control  t)
-
-;;;; Save point position between sessions --------------------------------------
-
-(setq-default save-place-file (concat my-cache-dir "places"))
-(save-place-mode 1)
+(csetq
+  (backup-directory-alist `(("." . ,my-backup-dir)))
+  (delete-old-versions t)
+  (kept-new-versions 6)
+  (kept-old-versions 2)
+  (version-control t))
 
 ;;;; Package setup -------------------------------------------------------------
 
@@ -153,8 +141,8 @@
 ;;;; Uniquify buffer names -----------------------------------------------------
 
 (use-package uniquify
-  :defer 2
-  :config (setq uniquify-buffer-name-style 'forward))
+  :custom
+  (uniquify-buffer-name-style 'forward))
 
 ;;;; Common packages -----------------------------------------------------------
 
@@ -164,19 +152,21 @@
 ;;;; Tramp ---------------------------------------------------------------------
 
 (use-package tramp
-  :init
-  (setq tramp-default-method "ssh"))
+  :defer t
+  :custom
+  (tramp-default-method "ssh")
+  (tramp-persistency-file-name (concat my-cache-dir "tramp")))
 
 ;;;; Other core packages -------------------------------------------------------
 
-(use-package core-fonts)
-(use-package core-appearance)
-(use-package core-sane-defaults)
-(use-package core-vc)
-(use-package core-dired)
-(use-package core-ivy)
-(use-package core-editing)
-(use-package core-package)
-(use-package core-company)
+(require 'core-fonts)
+(require 'core-appearance)
+(require 'core-sane-defaults)
+(require 'core-vc)
+(require 'core-dired)
+(require 'core-ivy)
+(require 'core-editing)
+(require 'core-package)
+(require 'core-company)
 
 (provide 'core)

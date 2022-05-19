@@ -21,13 +21,11 @@
          ;; ("C-x C-p" . counsel-project)
          
          ("C-c C-r" . ivy-resume))
-  :init
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "(%d/%d) ")
-  (setq counsel-rg-base-command
-        "rg -i -M 120 --no-heading --line-number --color never %s .")
-  (setq ivy-initial-inputs-alist nil)
-  (setq ivy-magic-slash-non-match-action nil)
+  :custom
+  (ivy-use-virtual-buffers t)
+  (ivy-count-format "(%d/%d) ")
+  (ivy-initial-inputs-alist nil)
+  (ivy-magic-slash-non-match-action nil)
   :config
   (ivy-mode 1)
   ;; (counsel-projectile-mode)

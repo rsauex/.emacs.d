@@ -1,10 +1,11 @@
-;; Package settings
-(setq-default
- package--init-file-ensured t
- package-archives
- '(("gnu"   . "http://elpa.gnu.org/packages/")
-   ("melpa" . "http://melpa.org/packages/")
-   ("org"   . "http://orgmode.org/elpa/")))
+;; Do not add (package-initialize)...
+(setq package--init-file-ensured t)
+
+(csetq
+  (package-user-dir (concat my-cache-dir "elpa/"))
+  (package-archives '(("gnu"   . "http://elpa.gnu.org/packages/")
+                      ("melpa" . "http://melpa.org/packages/")
+                      ("org"   . "http://orgmode.org/elpa/"))))
 
 (package-initialize)
 

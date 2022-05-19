@@ -1,16 +1,16 @@
 (use-package dired
+  :custom
+  ;; Better sorting
+  (dired-listing-switches "-lahv --group-directories-first")
+  ;; Move files between split panes
+  (dired-dwim-target t)
+
   :config
 
   ;; Better font-locking
   (use-package diredfl
     :ensure t
     :init (diredfl-global-mode))
-
-  ;; Better sorting
-  (setq dired-listing-switches "-lahv --group-directories-first")
-
-  ;; Move files between split panes
-  (setq dired-dwim-target t)
 
   ;; Reload dired after making changes
   (defadvice dired-do-rename (after revert-buffer activate)
