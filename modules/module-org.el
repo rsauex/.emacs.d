@@ -4,6 +4,12 @@
             (set (make-local-variable 'company-backends)
                  (cl-list* 'company-ispell company-backend))))
 
+;; Bar cursor in org-mode
+(add-hook 'org-mode-hook
+          (lambda ()
+            (set (make-local-variable 'cursor-type)
+                 'bar)))
+
 ;; org-mode: Don't ruin S-arrow to switch windows please (use M-+ and M-- instead to toggle)
 (setq org-replace-disputed-keys t)
 
