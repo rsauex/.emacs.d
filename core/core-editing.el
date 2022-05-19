@@ -66,4 +66,12 @@
         undo-tree-history-directory-alist
         (list (cons "." (concat my-cache-dir "undo-tree-hist/")))))
 
+(use-package adaptive-wrap
+  :ensure t
+  :defer t
+  :hooks ((visual-line-mode-hook . (adaptive-wrap-prefix-mode)))
+  :config
+  (csetq
+    (visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))))
+
 (provide 'core-editing)
