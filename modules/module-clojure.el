@@ -1,30 +1,34 @@
 ;;(use-package module-flycheck)
+(use-package module-paredit)
+(use-package aggressive-indent :ensure t)
 
 (use-package cider
   :ensure t
-  ;;:commands (cider-mode cider-jack-in)
   :hooks ((cider-repl-mode-hook . (enable-paredit-mode)))
-  :init
-  (setq cider-repl-history-file (expand-file-name "cider-history" my-cache-dir))
-  (setq cider-repl-history-size 1000)
-  (setq cider-font-lock-dynamically nil)
-  (setq cider-repl-use-clojure-font-lock nil)
+  :custom
+  (cider-repl-history-file (expand-file-name "cider-history" my-cache-dir))
+  (cider-repl-history-size 1000)
+  (cider-font-lock-dynamically nil)
+  (cider-repl-use-clojure-font-lock nil)
+  (cider-repl-display-help-banner nil)
+  (cider-print-options '(("length" 20)))
   :config
-  ;(setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc clojure-cider-typed))
-  ;(flycheck-clojure-setup)
+  ;; (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc clojure-cider-typed))
+  ;; (flycheck-clojure-setup)
   )
 
 (use-package clojure-mode
   :ensure t
   :diminish (clojure-mode . "Clj")
-  ;;:commands (clojure-mode)
-  :hooks ((clojure-mode-hook . (enable-paredit-mode cider-mode flycheck-mode)))
+  :hooks ((clojure-mode-hook . (enable-paredit-mode
+                                cider-mode
+                                aggressive-indent-mode)))
   :mode (("\\.clj$" . clojure-mode)
          ("\\.cljs$" . clojurescript-mode)
          ("\\.cljc$" . clojurec-mode))
   :config
-  ;(clojure/fancify-symbols 'clojure-mode)
-  ;(clojure/enable-special-indent)
+  ;; (clojure/fancify-symbols 'clojure-mode)
+  ;; (clojure/enable-special-indent)
   )
 
 ;; (defun clojure/fancify-symbols (mode)
@@ -53,24 +57,24 @@
 ;;                                        nil))))))
 
 
-(defvar clojure/special-indent-list
-  '((defsymbolmacro 1)
-    (symbol-macrolet 1)
-    (macrolet 1)
+;; (defvar clojure/special-indent-list
+;;   '((defsymbolmacro 1)
+;;     (symbol-macrolet 1)
+;;     (macrolet 1)
     
-    (match 1)
-    (domonad 1)
-    (m-when 1)
-    (block 1)
+;;     (match 1)
+;;     (domonad 1)
+;;     (m-when 1)
+;;     (block 1)
 
-    (!let 1)
-    (!let* 1)
-    (!defvar 2)
-    (!with-var-sorts 1)))
+;;     (!let 1)
+;;     (!let* 1)
+;;     (!defvar 2)
+;;     (!with-var-sorts 1)))
 
-(defun clojure/enable-special-indent ()
-  (mapcar (lambda (x)
-            (put-clojure-indent (car x) (cadr x)))
-          clojure/special-indent-list))
+;; (defun clojure/enable-special-indent ()
+;;   (mapcar (lambda (x)
+;;             (put-clojure-indent (car x) (cadr x)))
+;;           clojure/special-indent-list))
 
 (provide 'module-clojure)
