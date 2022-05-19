@@ -55,7 +55,12 @@
     '(progn
        (define-key wdired-mode-map (kbd "C-a") 'dired-back-to-start-of-files)
        (define-key wdired-mode-map (vector 'remap 'beginning-of-buffer) 'dired-back-to-top)
-       (define-key wdired-mode-map (vector 'remap 'end-of-buffer) 'dired-jump-to-bottom))))
+       (define-key wdired-mode-map (vector 'remap 'end-of-buffer) 'dired-jump-to-bottom)))
+
+  ;; MC-like key bindings
+  (define-key dired-mode-map (kbd "<f7>") 'dired-create-directory)
+  (define-key dired-mode-map (kbd "<f5>") 'dired-do-copy)
+  (define-key dired-mode-map (kbd "<f6>") 'dired-do-rename))
 
 (provide 'core-dired)
  
