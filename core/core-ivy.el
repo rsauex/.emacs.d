@@ -1,5 +1,5 @@
 (use-package counsel :ensure t
-  :defer 1
+  :demand t
   :diminish ivy-mode
   :bind (("C-s" . swiper)
          ([remap execute-extended-command] . counsel-M-x)
