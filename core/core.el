@@ -55,6 +55,21 @@
 (my--suspend-gc)
 (add-hook 'emacs-startup-hook 'my--resume-gc)
 
+;;;; Simple customize-set-variable ---------------------------------------------
+
+(require 'cl-lib)
+
+(defmacro csetq (&rest specs)
+  (declare (indent 0))
+  `(progn
+     ,@(mapcar (lambda (spec)
+                 (cl-destructuring-bind (variable value &optional comment)
+                     spec
+                   (if comment
+                       `(customize-set-variable ',variable ,value ,comment)
+                     `(customize-set-variable ',variable ,value))))
+               specs)
+     nil))
 
 ;;;; Encoding ------------------------------------------------------------------
 
