@@ -1,3 +1,7 @@
+(defun ffip--create-exclude-find-options (names)
+  (mapconcat (lambda (name)
+               (concat "-not -regex \".*" name ".*\"")) names " "))
+
 (use-package find-file-in-project
   :ensure t
   :defer 1
@@ -41,10 +45,6 @@
   ;;                                    ffip-limit))))))
 
   ;; Helper methods to create local settings
-
-  (defun ffip--create-exclude-find-options (names)
-    (mapconcat (lambda (name)
-                 (concat "-not -regex \".*" name ".*\"")) names " "))
 
   (defun ffip-local-excludes (&rest names)
     "Given a set of names, will exclude results with those names in the path."
