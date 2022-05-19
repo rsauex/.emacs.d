@@ -31,24 +31,30 @@
 
 ;;;; GC ------------------------------------------------------------------------
 
-(let ((gc-cons-threshold-original gc-cons-threshold))
-  (setq gc-cons-threshold (* 50 1000 1000))
+(defconst my-gc-cons-threshold-suspended
+  most-positive-fixnum)
 
-  (defun my/reset-gc-threshold ()
-    "Reset `gc-cons-threshold' to its default value."
-    (setq gc-cons-threshold gc-cons-threshold-original))
+(defconst my-gc-cons-threshold-normal
+  (* 16 1024 1024))
 
-  (add-hook 'emacs-startup-hook 'my/reset-gc-threshold)
+;; Functions to suspend/resume GC
 
-  ;; No GC while in minibuffer
-  (defun my-minibuffer-setup-hook ()
-    (setq gc-cons-threshold most-positive-fixnum))
+(defun my--suspend-gc ()
+  (setq gc-cons-threshold my-gc-cons-threshold-suspended))
 
-  (defun my-minibuffer-exit-hook ()
-    (setq gc-cons-threshold gc-cons-threshold-original))
+(defun my--resume-gc ()
+  (setq gc-cons-threshold my-gc-cons-threshold-normal))
 
-  (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
-  (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook))
+;; Suspend GC while in minibuffer
+
+(add-hook 'minibuffer-setup-hook #'my--suspend-gc)
+(add-hook 'minibuffer-exit-hook #'my--resume-gc)
+
+;; Suspend GC during startup
+
+(my--suspend-gc)
+(add-hook 'emacs-startup-hook 'my--resume-gc)
+
 
 ;;;; Encoding ------------------------------------------------------------------
 
