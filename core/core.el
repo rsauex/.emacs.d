@@ -60,6 +60,9 @@
 (require 'cl-lib)
 
 (defmacro csetq (&rest specs)
+  "Assign variables correctly handling customs.
+
+\(fn [VAR VALUE [COMMENT]]...)"
   (declare (indent 0))
   `(progn
      ,@(mapcar (lambda (spec)
