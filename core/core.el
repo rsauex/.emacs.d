@@ -38,7 +38,7 @@
   (expand-file-name "settings/" my-emacs-dir))
 
 (defconst my-modules-dir
-  (expand-file-name "modules/"  my-emacs-dir))
+  (expand-file-name "modules/" my-emacs-dir))
 
 (defconst my-cache-dir
   (expand-file-name ".cache/" my-emacs-dir))
@@ -81,11 +81,6 @@
 (set-language-environment 'utf-8)
 (csetq (default-input-method nil)) ;; `set-language-environment' sets `default-input-method', which is unwanted
 
-;;;; Bookmarks -----------------------------------------------------------------
-
-(csetq
-  (bookmark-save-flag t))
-
 ;;;; Backups -------------------------------------------------------------------
 
 (csetq
@@ -113,17 +108,16 @@
 
 (use-package savehist
   :custom
+  (savehist-mode 1)
   (history-length 50)
   (history-delete-duplicates t)
   (savehist-additional-variables (list 'search-ring
-                                       'regexp-search-ring))
-  :config
-  (savehist-mode 1))
+                                       'regexp-search-ring)))
 
 ;;;; Save point position between sessions --------------------------------------
 
 (use-package saveplace
-  :config
+  :custom
   (save-place-mode 1))
 
 ;;;; Uniquify buffer names -----------------------------------------------------

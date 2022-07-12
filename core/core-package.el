@@ -4,8 +4,8 @@
 (setq package--init-file-ensured t)
 
 (csetq
-  (package-user-dir (expand-file-name "elpa/" my-cache-dir))
-  (package-gnupghome-dir (expand-file-name "elpa/gnupg" my-cache-dir))
+  (package-user-dir my-package-dir)
+  (package-gnupghome-dir (expand-file-name "gnupg" my-package-dir))
   (package-archives '(("gnu"   . "http://elpa.gnu.org/packages/")
                       ("melpa" . "http://melpa.org/packages/")
                       ("org"   . "http://orgmode.org/elpa/"))))
