@@ -60,22 +60,21 @@
 
 ;;;; Simple customize-set-variable ---------------------------------------------
 
-(require 'cl-lib)
-
 (defmacro csetq (&rest specs)
   "Assign variables correctly handling customs.
 
 \(fn [VAR VALUE [COMMENT]]...)"
   (declare (indent 0))
-  `(progn
-     ,@(mapcar (lambda (spec)
-                 (cl-destructuring-bind (variable value &optional comment)
-                     spec
-                   (if comment
-                       `(customize-set-variable ',variable ,value ,comment)
-                     `(customize-set-variable ',variable ,value))))
-               specs)
-     nil))
+  (let ((%spec (lambda (spec)
+                 (pcase spec
+                   (`(,variable ,value)
+                    `(customize-set-variable ',variable ,value))
+                   (`(,variable ,value ,comment)
+                    `(customize-set-variable ',variable ,value ,comment))
+                   (_ (error "Invalid `csetq' binding: %s" spec))))))
+    `(progn
+       ,@(mapcar %spec specs)
+       nil)))
 
 ;;;; Encoding ------------------------------------------------------------------
 
