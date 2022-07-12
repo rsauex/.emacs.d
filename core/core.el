@@ -157,16 +157,23 @@
   (tramp-default-method "ssh")
   (tramp-persistency-file-name (concat my-cache-dir "tramp")))
 
+;;;; Abbrev --------------------------------------------------------------------
+
+(use-package abbrev
+  :defer t
+  :custom
+  (abbrev-file-name (concat my-cache-dir "abbrev_defs")))
+
 ;;;; Other core packages -------------------------------------------------------
 
 (require 'core-fonts)
 (require 'core-appearance)
 (require 'core-sane-defaults)
-(require 'core-vc)
 (require 'core-dired)
 (require 'core-ivy)
 (require 'core-editing)
 (require 'core-package)
 (require 'core-company)
+(require 'core-project)
 
 (provide 'core)

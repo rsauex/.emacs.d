@@ -33,7 +33,9 @@
   (put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face))
 
 (use-package multiple-cursors
-  :ensure t)
+  :ensure t
+  :custom
+  (mc/list-file (concat my-cache-dir "mc-lists.el")))
 
 (use-package browse-kill-ring
   :ensure t

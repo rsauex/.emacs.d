@@ -1,8 +1,11 @@
+;; -*- lexical-binding: t; -*-
+
 ;; Do not add (package-initialize)...
 (setq package--init-file-ensured t)
 
 (csetq
   (package-user-dir (concat my-cache-dir "elpa/"))
+  (package-gnupghome-dir (concat my-cache-dir "elpa/gnupg"))
   (package-archives '(("gnu"   . "http://elpa.gnu.org/packages/")
                       ("melpa" . "http://melpa.org/packages/")
                       ("org"   . "http://orgmode.org/elpa/"))))
