@@ -147,11 +147,6 @@
   :custom
   (uniquify-buffer-name-style 'forward))
 
-;;;; Common packages -----------------------------------------------------------
-
-(use-package s
-  :ensure t)
-
 ;;;; Tramp ---------------------------------------------------------------------
 
 (use-package tramp

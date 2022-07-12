@@ -1,7 +1,6 @@
 ;; -*- lexical-binding: t; -*-
 
 (csetq
-  (vc-follow-symlinks t)
   ;; Save clipboard contents into kill-ring before replacing them
   (save-interprogram-paste-before-kill t)
   ;; Formatting
@@ -12,20 +11,10 @@
   (indent-tabs-mode nil)
   (require-final-newline t)
   (tab-always-indent t)
-  ;;tab-width 4
   (tabify-regexp "^\t* [ \t]+") ; for :retab
   ;; Wrapping
   (truncate-lines t)
   (truncate-partial-width-windows 50))
-
-;; whitespace-mode
-(csetq
-  (whitespace-line-column fill-column)
-  (whitespace-style '(face indentation tabs tab-mark spaces space-mark newline newline-mark
-                           trailing lines-tail))
-  (whitespace-display-mappings '((tab-mark     ?\t [?› ?\t])
-                                 (newline-mark ?\n [?¬ ?\n])
-                                 (space-mark   ?\  [?·] [?.]))))
 
 (use-package highlight-escape-sequences
   :ensure t
