@@ -53,18 +53,18 @@
 
 (use-package undo-tree
   :ensure t
-  :defer 1
   :diminish undo-tree-mode
   :custom
   (global-undo-tree-mode 1)
-  (undo-tree-enable-undo-in-region 0)
+  (undo-tree-enable-undo-in-region nil)
   (undo-tree-auto-save-history nil)
   (undo-tree-history-directory-alist
    (list (cons "." (concat my-cache-dir "undo-tree-hist/")))))
 
 (use-package adaptive-wrap
   :ensure t
-  :defer t
+  :diminish adaptive-wrap-prefix-mode
+  :commands (adaptive-wrap-prefix-mode)
   :hooks ((visual-line-mode-hook . (adaptive-wrap-prefix-mode)))
   :custom
   (visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)))
