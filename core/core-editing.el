@@ -24,9 +24,7 @@
   (put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face))
 
 (use-package multiple-cursors
-  :ensure t
-  :custom
-  (mc/list-file (expand-file-name "mc-lists.el" my-cache-dir)))
+  :ensure t)
 
 (use-package browse-kill-ring
   :ensure t
