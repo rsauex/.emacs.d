@@ -26,7 +26,7 @@
 (use-package multiple-cursors
   :ensure t
   :custom
-  (mc/list-file (concat my-cache-dir "mc-lists.el")))
+  (mc/list-file (expand-file-name "mc-lists.el" my-cache-dir)))
 
 (use-package browse-kill-ring
   :ensure t
@@ -59,7 +59,7 @@
   (undo-tree-enable-undo-in-region nil)
   (undo-tree-auto-save-history nil)
   (undo-tree-history-directory-alist
-   (list (cons "." (concat my-cache-dir "undo-tree-hist/")))))
+   (list (cons "." (expand-file-name "undo-tree-hist/" my-cache-dir)))))
 
 (use-package adaptive-wrap
   :ensure t

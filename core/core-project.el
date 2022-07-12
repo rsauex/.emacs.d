@@ -3,14 +3,14 @@
 (use-package project
   :defer t
   :custom
-  (project-list-file (concat my-cache-dir "projects")))
+  (project-list-file (expand-file-name "projects" my-cache-dir)))
 
 (use-package magit
   :defer t
   :ensure t
   :custom
-  (transient-levels-file  (concat my-cache-dir "transient/levels.el"))
-  (transient-values-file  (concat my-cache-dir "transient/values.el"))
-  (transient-history-file (concat my-cache-dir "transient/history.el")))
+  (transient-levels-file  (expand-file-name "transient/levels.el" my-cache-dir))
+  (transient-values-file  (expand-file-name "transient/values.el" my-cache-dir))
+  (transient-history-file (expand-file-name "transient/history.el" my-cache-dir)))
 
 (provide 'core-project)

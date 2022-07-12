@@ -82,20 +82,20 @@
 ;;;; Folders & files -----------------------------------------------------------
 
 (csetq
-  (server-auth-dir             (concat my-cache-dir "server/"))
-  (thumbs-thumbsdir            (concat my-cache-dir "thumbs/"))
-  (recentf-save-file           (concat my-cache-dir "recentf"))
-  (kkc-init-file-name          (concat my-cache-dir "kkcrc")))
+  (server-auth-dir             (expand-file-name "server/" my-cache-dir))
+  (thumbs-thumbsdir            (expand-file-name "thumbs/" my-cache-dir))
+  (recentf-save-file           (expand-file-name "recentf" my-cache-dir))
+  (kkc-init-file-name          (expand-file-name "kkcrc" my-cache-dir)))
 
 ;;;; Auto save -----------------------------------------------------------------
 
 (csetq
-  (auto-save-list-file-prefix (concat my-cache-dir "auto-save-list/.saves-")))
+  (auto-save-list-file-prefix (expand-file-name "auto-save-list/.saves-" my-cache-dir)))
 
 ;;;; Bookmarks -----------------------------------------------------------------
 
 (csetq
-  (bookmark-default-file (concat my-cache-dir "bookmarks"))
+  (bookmark-default-file (expand-file-name "bookmarks" my-cache-dir))
   (bookmark-save-flag t))
 
 ;;;; Backups -------------------------------------------------------------------
@@ -127,7 +127,7 @@
   :custom
   (history-length 50)
   (history-delete-duplicates t)
-  (savehist-file (concat my-cache-dir "history"))
+  (savehist-file (expand-file-name "history" my-cache-dir))
   (savehist-additional-variables (list 'search-ring
                                        'regexp-search-ring))
   :config
@@ -137,7 +137,7 @@
 
 (use-package saveplace
   :custom
-  (save-place-file (concat my-cache-dir "places"))
+  (save-place-file (expand-file-name "places" my-cache-dir))
   :config
   (save-place-mode 1))
 
@@ -153,14 +153,14 @@
   :defer t
   :custom
   (tramp-default-method "ssh")
-  (tramp-persistency-file-name (concat my-cache-dir "tramp")))
+  (tramp-persistency-file-name (expand-file-name "tramp" my-cache-dir)))
 
 ;;;; Abbrev --------------------------------------------------------------------
 
 (use-package abbrev
   :defer t
   :custom
-  (abbrev-file-name (concat my-cache-dir "abbrev_defs")))
+  (abbrev-file-name (expand-file-name "abbrev_defs" my-cache-dir)))
 
 ;;;; Other core packages -------------------------------------------------------
 

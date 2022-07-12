@@ -4,15 +4,15 @@
 (setq package--init-file-ensured t)
 
 (csetq
-  (package-user-dir (concat my-cache-dir "elpa/"))
-  (package-gnupghome-dir (concat my-cache-dir "elpa/gnupg"))
+  (package-user-dir (expand-file-name "elpa/" my-cache-dir))
+  (package-gnupghome-dir (expand-file-name "elpa/gnupg" my-cache-dir))
   (package-archives '(("gnu"   . "http://elpa.gnu.org/packages/")
                       ("melpa" . "http://melpa.org/packages/")
                       ("org"   . "http://orgmode.org/elpa/"))))
 
 (package-initialize)
 
-(unless (file-exists-p (concat package-user-dir "archives/melpa"))
+(unless (file-exists-p (expand-file-name "archives/melpa" package-user-dir))
   (package-refresh-contents))
 
 (defun my-package-upgrade-all ()
