@@ -133,6 +133,14 @@
   :custom
   (tramp-default-method "ssh"))
 
+;;;; Autorevert ----------------------------------------------------------------
+
+(use-package autorevert
+  :custom
+  (global-auto-revert-mode 1)
+  (global-auto-revert-non-file-buffers t)
+  (auto-revert-verbose nil))
+
 ;;;; Other core packages -------------------------------------------------------
 
 (require 'core-fonts)
