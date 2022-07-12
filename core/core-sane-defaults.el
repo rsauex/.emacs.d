@@ -35,9 +35,6 @@
   ;; No electric indent
   (electric-indent-mode nil)
 
-  ;; Easily navigate sillycased words
-  (global-subword-mode t)
-
   ;; Show me empty lines after buffer end
   (indicate-empty-lines t))
 

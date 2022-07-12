@@ -51,8 +51,9 @@
          ("C-x SPC" . ace-jump-mode-pop-mark)))
 
 (use-package subword
-  :commands (subword-mode)
-  :diminish (subword-mode))
+  :diminish (subword-mode)
+  :custom
+  (global-subword-mode 1))
 
 (use-package visual-regexp
   :ensure t
