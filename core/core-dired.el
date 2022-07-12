@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package dired
   :custom
   ;; Better sorting

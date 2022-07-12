@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (csetq
   (inhibit-default-init t)
 

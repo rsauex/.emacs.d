@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package counsel :ensure t
   :demand t
   :diminish ivy-mode

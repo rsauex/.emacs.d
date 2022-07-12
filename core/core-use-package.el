@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (unless (require 'use-package nil 'noerror)
   (package-refresh-contents)
   (package-install 'use-package))

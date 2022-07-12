@@ -4,6 +4,7 @@
   :hooks ((after-init-hook . (global-company-mode)))
   :custom
   (company-tooltip-align-annotations t))
+;; -*- lexical-binding: t; -*-
 
 (use-package company-box
   :ensure t

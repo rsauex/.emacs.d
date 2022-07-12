@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (csetq
   (vc-follow-symlinks t)
   ;; Save clipboard contents into kill-ring before replacing them
