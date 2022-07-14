@@ -78,36 +78,38 @@
   :custom
   (global-hl-line-mode t))
 
-(setq my-current-theme-is-dark t)
-
-(defun my-load-theme (theme)
-  (if (daemonp)
-      (add-hook 'after-make-frame-functions
-                (lambda (frame)
-                  (with-selected-frame frame
-                    (load-theme theme t))))
-    (load-theme theme t))
-  
-  (doom-themes-neotree-config)
-  (doom-themes-org-config))
-
-(use-package doom-themes
-  :ensure t
-  :config
-  (my-load-theme 'doom-nord))
-
+;; Prettier modeline
 (use-package doom-modeline
   :ensure t
   :custom
   (doom-modeline-height 30)
   (doom-modeline-mode 1))
 
+;; Themes
+
+(use-package doom-themes
+  :ensure t
+  :config
+  (doom-themes-neotree-config)
+  (doom-themes-org-config))
+
+(defconst my-dark-theme 'doom-nord)
+(defconst my-light-theme 'doom-nord-light)
+
+(defvar my-current-theme-is-dark t)
+
+(load-theme my-dark-theme t t)
+(load-theme my-light-theme t t)
+
+(csetq
+  (custom-enabled-themes '(doom-nord)))
+
 (defun my-toggle-light-theme ()
   (interactive)
-  (my-load-theme
-   (if my-current-theme-is-dark
-       'doom-nord-light
-     'doom-nord))
-  (setq my-current-theme-is-dark (not my-current-theme-is-dark)))
+  (setq my-current-theme-is-dark (not my-current-theme-is-dark))
+  (let ((theme (if my-current-theme-is-dark
+                   my-dark-theme
+                 my-light-theme)))
+    (csetq (custom-enabled-themes (list theme)))))
 
 (provide 'core-appearance)
