@@ -11,10 +11,22 @@
   (indent-tabs-mode nil)
   (require-final-newline t)
   (tab-always-indent t)
-  (tabify-regexp "^\t* [ \t]+") ; for :retab
   ;; Wrapping
   (truncate-lines t)
-  (truncate-partial-width-windows 50))
+  (truncate-partial-width-windows 50)
+  ;; Real emacs knights don't use shift to mark things
+  (shift-select-mode nil)
+  ;; Remove text in active region if inserting text
+  (delete-selection-mode t)
+  ;; Move files to trash when deleting
+  (delete-by-moving-to-trash t)
+  ;; Disable recursive minibuffers
+  (enable-recursive-minibuffers nil))
+
+;; Run at full power please
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
 
 (use-package electric
   :custom

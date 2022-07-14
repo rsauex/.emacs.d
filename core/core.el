@@ -145,7 +145,6 @@
 
 (require 'core-fonts)
 (require 'core-appearance)
-(require 'core-sane-defaults)
 (require 'core-dired)
 (require 'core-ivy)
 (require 'core-editing)

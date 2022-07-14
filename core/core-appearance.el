@@ -1,46 +1,82 @@
 ;; -*- lexical-binding: t; -*-
 
+;; No blinking...
 (csetq
-  (inhibit-default-init t)
-
-  (indicate-buffer-boundaries t) ; show where buffer starts/ends
-  (indicate-empty-lines t)  ; show empty lines
-  ;; Keep cursors and highlights in current window only
-  (cursor-in-non-selected-windows nil)
-  (highlight-nonselected-windows nil)
-  ;; Disable bidirectional text support for slight performance bonus
-  (bidi-display-reordering nil)
-  ;; Remove continuation arrow on right fringe
   (visible-bell nil)
   (visible-cursor nil)
-  (ring-bell-function #'ignore)
-  (x-stretch-cursor t)
-  (use-dialog-box nil) ; always avoid GUI
-  (redisplay-dont-pause t) ; don't pause display on input
-  (show-help-function nil)         ; hide :help-echo text
-  (jit-lock-defer-time nil)
-  (jit-lock-stealth-nice 0.1)
-  (jit-lock-stealth-time 0.2)
-  (jit-lock-stealth-verbose nil)
-  ;; Minibuffer resizing
-  (resize-mini-windows 'grow-only)
-  (max-mini-window-height 0.3))
+  (ring-bell-function #'ignore))
 
+;; More fringe indicators
 (csetq
-  (blink-matching-paren nil) ; don't blink--too distracting
-  (show-paren-delay 0.075)
-  (show-paren-highlight-openparen t)
-  (show-paren-when-point-inside-paren t)
-  (show-paren-mode 1))
+  (indicate-buffer-boundaries t)
+  (indicate-empty-lines t))
 
-;; Turn off mouse interface early in startup to avoid momentary display
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-
-;; No splash screen please ... jeez
+;; Draw block cursor as wide as the glyph under it
 (csetq
-  (inhibit-startup-message t))
+  (x-stretch-cursor t))
+
+;; Minibuffer resizing
+(csetq
+  (resize-mini-windows 'grow-only))
+
+;; Show keystrokes in progress
+(csetq
+  (echo-keystrokes 0.2))
+
+;; Answer just 'y' or 'n'
+(csetq
+  (use-short-answers t))
+
+;; Always display line and column numbers
+(csetq
+  (line-number-mode t)
+  (column-number-mode t))
+
+;; Don't blink when close-paren is inserted
+(csetq
+  (blink-matching-paren nil))
+
+;; Less GUI, please
+(csetq
+  (menu-bar-mode nil)
+  (tool-bar-mode nil)
+  (scroll-bar-mode nil)
+  (use-dialog-box nil))
+
+;; Customizable window divider (bonus: more distinct doom modeline)
+(csetq
+  (window-divider-default-places t)
+  (window-divider-default-bottom-width 1)
+  (window-divider-default-right-width 1)
+  (window-divider-mode t))
+
+;; Scroll
+(csetq
+  (hscroll-margin 1)
+  (hscroll-step 1)
+  (scroll-conservatively 1001)
+  (scroll-margin 0)
+  (scroll-preserve-screen-position t))
+
+;; Mouse scroll
+(csetq
+  (mouse-wheel-scroll-amount '(5 ((shift) . 2)))  ; one line at a time
+  (mouse-wheel-progressive-speed nil))            ; don't accelerate scrolling
+
+;; Initial buffer
+(csetq
+  (initial-buffer-choice t)
+  (initial-major-mode 'text-mode))
+
+;; Highlight matching paren
+(use-package paren
+  :custom
+  (show-paren-mode t))
+
+;; Highlight current line
+(use-package hl-line
+  :custom
+  (global-hl-line-mode t))
 
 (setq my-current-theme-is-dark t)
 
@@ -73,12 +109,5 @@
        'doom-nord-light
      'doom-nord))
   (setq my-current-theme-is-dark (not my-current-theme-is-dark)))
-
-;; Highlight current line
-(global-hl-line-mode 1)
-
-;; Always display line and column numbers
-(line-number-mode 1)
-(column-number-mode 1)
 
 (provide 'core-appearance)

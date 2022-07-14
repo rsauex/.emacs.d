@@ -28,6 +28,7 @@
   (ivy-count-format "(%d/%d) ")
   (ivy-initial-inputs-alist nil)
   (ivy-magic-slash-non-match-action nil)
+  (suggest-key-bindings nil)
   :config
   (ivy-mode 1)
   ;; (counsel-projectile-mode)
