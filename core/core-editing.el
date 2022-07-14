@@ -67,4 +67,14 @@
   :custom
   (visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)))
 
+;; Show trailing whitespaces only when visiting a file
+(defun maybe-toggle-show-trailing-whitespace ()
+  (setq-local show-trailing-whitespace (not (null (buffer-file-name)))))
+
+(add-hook 'after-change-major-mode-hook #'maybe-toggle-show-trailing-whitespace)
+(add-hook 'after-save-hook #'maybe-toggle-show-trailing-whitespace)
+
+;; Remove trailing whitespaces on save
+(add-hook 'before-save-hook #'delete-trailing-whitespace)
+
 (provide 'core-editing)
