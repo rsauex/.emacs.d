@@ -16,6 +16,12 @@
   (truncate-lines t)
   (truncate-partial-width-windows 50))
 
+(use-package electric
+  :custom
+  (electric-indent-mode nil)
+  (electric-layout-mode nil)
+  (electric-quote-mode nil))
+
 (use-package highlight-escape-sequences
   :ensure t
   :defer 2
