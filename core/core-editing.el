@@ -1,26 +1,48 @@
 ;; -*- lexical-binding: t; -*-
 
+;; Wrap lines at whitespaces, not in a middle of a word
 (csetq
-  ;; Save clipboard contents into kill-ring before replacing them
-  (save-interprogram-paste-before-kill t)
-  ;; Formatting
-  (delete-trailing-lines nil)
-  (sentence-end-double-space nil)
-  (word-wrap t)
-  ;; Whitespace
-  (indent-tabs-mode nil)
-  (require-final-newline t)
-  (tab-always-indent t)
-  ;; Wrapping
+  (word-wrap t))
+
+;; Don't wrap lines by default
+(csetq
   (truncate-lines t)
-  (truncate-partial-width-windows 50)
-  ;; Real emacs knights don't use shift to mark things
-  (shift-select-mode nil)
-  ;; Remove text in active region if inserting text
-  (delete-selection-mode t)
-  ;; Move files to trash when deleting
-  (delete-by-moving-to-trash t)
-  ;; Disable recursive minibuffers
+  (truncate-partial-width-windows nil))
+
+;; TAB key should only indent by default
+(csetq
+  (tab-always-indent t))
+
+;; Require an empty line in the of files
+(csetq
+  (require-final-newline t))
+
+;; Never use tabs unless explicitly asked to
+(csetq
+  (indent-tabs-mode nil))
+
+;; Use single space to separate sentences
+(csetq
+  (sentence-end-double-space nil))
+
+;; Save clipboard contents into kill-ring before replacing them
+(csetq
+  (save-interprogram-paste-before-kill t))
+
+;; Real emacs knights don't use shift to mark things
+(csetq
+  (shift-select-mode nil))
+
+;; Remove text in active region if inserting text
+(csetq
+  (delete-selection-mode t))
+
+;; Move files to trash when deleting
+(csetq
+  (delete-by-moving-to-trash t))
+
+;; Disable recursive minibuffers
+(csetq
   (enable-recursive-minibuffers nil))
 
 ;; Run at full power please
@@ -36,19 +58,11 @@
 
 (use-package highlight-escape-sequences
   :ensure t
-  :defer 2
-  :config
-  (hes-mode)
-  (put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face))
+  :custom
+  (hes-mode t))
 
 (use-package multiple-cursors
   :ensure t)
-
-(use-package browse-kill-ring
-  :ensure t
-  :commands (browse-kill-ring)
-  :custom
-  (browse-kill-ring-quit-action 'save-and-restore))
 
 (use-package ace-jump-mode
   :ensure t
