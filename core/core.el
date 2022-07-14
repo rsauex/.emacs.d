@@ -107,6 +107,11 @@
   (dolist (fn (reverse functions))
     (add-hook hook fn)))
 
+;;;; Autosave ------------------------------------------------------------------
+
+(csetq
+  (auto-save-list-file-prefix (concat user-emacs-directory "auto-save-list/.saves-")))
+
 ;;;; History -------------------------------------------------------------------
 
 (use-package savehist
