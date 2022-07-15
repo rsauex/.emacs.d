@@ -43,6 +43,10 @@
   (scroll-bar-mode nil)
   (use-dialog-box nil))
 
+;; Yet, enable tooltips
+(csetq
+  (tooltip-mode t))
+
 ;; Customizable window divider (bonus: more distinct doom modeline)
 (csetq
   (window-divider-default-places t)
