@@ -1,9 +1,15 @@
 (use-package lsp-mode :ensure t
   :commands (lsp lsp-mode)
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  :config
-  (setq lsp-completion-show-detail nil
-        lsp-session-file (expand-file-name "lsp-session-v1" my-cache-dir)))
-  
+  :custom
+  (lsp-keymap-prefix "C-c l")
+  (lsp-enable-folding nil)
+  (lsp-enable-text-document-color nil)
+  (lsp-enable-on-type-formatting nil)
+  (lsp-lens-enable nil)
+  (lsp-headerline-breadcrumb-enable nil)
+  (lsp-completion-show-detail nil))
+
+(defun my-lsp-disable-indentation ()
+  (setq-local lsp-enable-indentation nil))
+
 (provide 'module-lsp)
