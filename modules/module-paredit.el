@@ -1,7 +1,6 @@
 (use-package paredit
   :ensure t
   :diminish paredit-mode
-  :commands (enable-paredit-mode paredit-mode)
   :config
   (defun paredit-wrap-round-from-behind ()
     (interactive)

@@ -66,7 +66,6 @@
 
 (use-package ace-jump-mode
   :ensure t
-  :commands (ac-jump-mode ace-jump-mode-pop-mark)
   :config (ace-jump-mode-enable-mark-sync)
   :bind (("C-c SPC" . ace-jump-mode)
          ("C-x SPC" . ace-jump-mode-pop-mark)))
@@ -97,7 +96,6 @@
 (use-package visual-fill-column
   :ensure t
   :diminish visual-fill-column-mode
-  :commands (visual-fill-column-mode)
   :hooks
   (visual-line-mode-hook . (visual-fill-column-mode))
   :custom
@@ -108,7 +106,6 @@
 (use-package adaptive-wrap
   :ensure t
   :diminish adaptive-wrap-prefix-mode
-  :commands (adaptive-wrap-prefix-mode)
   :hooks
   (visual-line-mode-hook . (adaptive-wrap-prefix-mode)))
 

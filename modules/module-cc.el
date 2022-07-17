@@ -2,7 +2,6 @@
   :ensure t)
 
 (use-package c-mode
-  :defer t
   :hooks
   (c-mode-hook . (ggtags-mode))
   :custom-local

@@ -134,7 +134,6 @@
 ;;;; Tramp ---------------------------------------------------------------------
 
 (use-package tramp
-  :defer t
   :custom
   (tramp-default-method "ssh"))
 

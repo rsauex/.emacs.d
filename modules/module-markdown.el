@@ -1,5 +1,4 @@
 (use-package markdown-mode
-  :commands (markdown-mode)
   :mode (("\\.md$" . markdown-mode)
          ("\\.markdown$" . markdown-mode))
   :hooks

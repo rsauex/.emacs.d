@@ -1,5 +1,4 @@
 (use-package lsp-mode :ensure t
-  :commands (lsp lsp-mode)
   :custom
   (lsp-keymap-prefix "C-c l")
   (lsp-enable-folding nil)

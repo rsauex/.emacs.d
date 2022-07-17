@@ -1,9 +1,7 @@
 (use-package shell
-  :commands (shell)
   :config
   ;; bash-completion
   (use-package bash-completion
-    :commands (bash-completion-dynamic-complete)
     :hooks
     (shell-dynamic-complete-functions . (bash-completion-dynamic-complete))
     (shell-command-complete-functions . (bash-completion-dynamic-complete)))

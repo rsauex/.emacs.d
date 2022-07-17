@@ -1,21 +1,18 @@
-(use-package module-paredit)
-(use-package module-aggressive-indent)
+(require 'module-paredit)
+(require 'module-aggressive-indent)
 
 (use-package geiser
-  ;; :defer t
   :ensure t
   :custom
   (geiser-active-implementations '(guile)))
 
 (use-package lispy
-  :commands (lispy-mode)
   :ensure t)
 
 (use-package ws-butler
   :ensure t)
 
 (use-package scheme-mode
-  :defer t
   :hooks
   (scheme-mode-hook . (enable-paredit-mode
                        geiser-mode

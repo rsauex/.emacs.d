@@ -15,7 +15,6 @@
 
 (use-package org-variable-pitch
   :ensure t
-  :commands (org-variable-pitch-minor-mode)
   :custom
   (org-variable-pitch-fixed-font (face-attribute 'fixed-pitch :family))
   (org-variable-pitch-fixed-faces '(org-block
@@ -51,12 +50,10 @@
 
 (use-package org-bullets
   :ensure t
-  :commands (org-bullets-mode)
   :custom
   (org-bullets-bullet-list '("› ")))
 
 (use-package org-mode
-  :commands (org-mode)
   :hooks
   (org-mode-hook . (org-bullets-mode
                     org-variable-pitch-minor-mode))

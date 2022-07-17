@@ -1,14 +1,12 @@
-(use-package module-paredit)
-(use-package module-aggressive-indent)
+(require 'module-paredit)
+(require 'module-aggressive-indent)
 
 
 (use-package slime-company
-  :defer t
   :ensure t)
 
 (use-package slime
   :ensure t
-  :commands (slime slime-mode slime-connect)
   :hooks
   (slime-mode-hook . (enable-paredit-mode
                       aggressive-indent-mode))
@@ -30,13 +28,11 @@
                            slime-xref-browser))))
 
 (use-package lispy
-  :commands (lispy-mode)
   :ensure t
   :custom
   (lispy-colon-p nil))
 
 (use-package lisp-mode
-  :defer t
   :hooks
   (lisp-mode-hook . (enable-paredit-mode
                      slime-mode
