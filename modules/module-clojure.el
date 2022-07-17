@@ -8,6 +8,8 @@
   (cider-repl-mode-hook . (enable-paredit-mode))
   (cider-mode-hook . (disable-cider-completion
                       disable-cider-xref))
+  :custom-local
+  (cider-mode . ((lsp-enable-indentation nil)))
   :custom
   (cider-repl-history-file (expand-file-name "cider-history" my-cache-dir))
   (cider-repl-history-size 1000)
@@ -25,15 +27,10 @@
 (use-package clojure-mode
   :ensure t
   :diminish (clojure-mode . "Clj")
-  :mode (("\\.clj$" . clojure-mode)
-         ("\\.cljs$" . clojurescript-mode)
-         ("\\.cljc$" . clojurec-mode))
   :hooks
   (clojure-mode-hook . (enable-paredit-mode
                         cider-mode
                         aggressive-indent-mode
-                        lsp-deferred))
-  :custom-local
-  (clojure-mode . ((lsp-enable-indentation nil))))
+                        lsp-deferred)))
 
 (provide 'module-clojure)
