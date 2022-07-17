@@ -15,16 +15,18 @@
           (slime-repl-mode-hook . (enable-paredit-mode
                                    (lambda () (define-key slime-repl-mode-map
                                                 (read-kbd-macro paredit-backward-delete-key) nil)))))
+  :custom
+  (slime-load-failed-fasl 'never)
+  (slime-net-coding-system 'utf-8-unix)
   :config (progn
             (slime-setup '(slime-asdf
                            slime-fancy
                            slime-indentation
                            slime-company
                            slime-sprof
-                           slime-snapshot
+                           ;; slime-snapshot
                            slime-tramp
-                           slime-xref-browser))
-            (setq-default slime-net-coding-system 'utf-8-unix)))
+                           slime-xref-browser))))
 
 (use-package lispy
   :commands (lispy-mode)
