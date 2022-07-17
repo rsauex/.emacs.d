@@ -1,4 +1,5 @@
 (use-package module-paredit)
+(use-package aggressive-indent :ensure t)
 
 (setq-default inferior-lisp-program "sbcl --dynamic-space-size 5120")
 
@@ -9,7 +10,8 @@
 (use-package slime
   :ensure t
   :commands (slime slime-mode slime-connect)
-  :hooks ((slime-mode-hook . (enable-paredit-mode))
+  :hooks ((slime-mode-hook . (enable-paredit-mode
+                              aggressive-indent-mode))
           (slime-repl-mode-hook . (enable-paredit-mode
                                    (lambda () (define-key slime-repl-mode-map
                                                 (read-kbd-macro paredit-backward-delete-key) nil)))))
