@@ -27,6 +27,10 @@
 (csetq
   (use-short-answers t))
 
+;; Always confirm when leaving Emacs
+(csetq
+  (confirm-kill-emacs #'yes-or-no-p))
+
 ;; Always display line and column numbers
 (csetq
   (line-number-mode t)
