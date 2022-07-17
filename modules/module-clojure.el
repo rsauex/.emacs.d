@@ -1,6 +1,6 @@
 (use-package module-paredit)
 (use-package module-lsp)
-(use-package aggressive-indent :ensure t)
+(use-package module-aggressive-indent)
 
 (use-package cider
   :ensure t

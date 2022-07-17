@@ -1,4 +1,5 @@
 (use-package module-paredit)
+(use-package module-aggressive-indent)
 
 (use-package geiser
   ;; :defer t
@@ -8,9 +9,6 @@
 
 (use-package lispy
   :commands (lispy-mode)
-  :ensure t)
-
-(use-package aggressive-indent
   :ensure t)
 
 (use-package ws-butler

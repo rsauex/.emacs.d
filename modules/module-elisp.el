@@ -1,4 +1,5 @@
 (use-package module-paredit)
+(use-package module-aggressive-indent)
 
 (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
 

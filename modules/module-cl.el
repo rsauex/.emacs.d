@@ -1,5 +1,5 @@
 (use-package module-paredit)
-(use-package aggressive-indent :ensure t)
+(use-package module-aggressive-indent)
 
 
 (use-package slime-company
