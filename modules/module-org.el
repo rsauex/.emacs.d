@@ -57,8 +57,9 @@
 
 (use-package org-mode
   :commands (org-mode)
-  :hooks ((org-mode-hook . (org-bullets-mode
-                            org-variable-pitch-minor-mode)))
+  :hooks
+  (org-mode-hook . (org-bullets-mode
+                    org-variable-pitch-minor-mode))
   :custom-local
   (org-mode . (;; Bar cursor in org-mode
                (cursor-type 'bar)

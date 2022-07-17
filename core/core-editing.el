@@ -98,7 +98,8 @@
   :ensure t
   :diminish visual-fill-column-mode
   :commands (visual-fill-column-mode)
-  :hooks ((visual-line-mode-hook . (visual-fill-column-mode)))
+  :hooks
+  (visual-line-mode-hook . (visual-fill-column-mode))
   :custom
   (visual-fill-column-width 120)
   (visual-fill-column-enable-sensible-window-split t)
@@ -108,7 +109,8 @@
   :ensure t
   :diminish adaptive-wrap-prefix-mode
   :commands (adaptive-wrap-prefix-mode)
-  :hooks ((visual-line-mode-hook . (adaptive-wrap-prefix-mode))))
+  :hooks
+  (visual-line-mode-hook . (adaptive-wrap-prefix-mode)))
 
 ;; Show trailing whitespaces only when visiting a file
 (defun maybe-toggle-show-trailing-whitespace ()

@@ -9,8 +9,9 @@
 
 (use-package powershell :ensure t
   :commands (powershell powershell-mode)
-  :hooks ((powershell-mode-hook . (lsp-mode
-                                   smartparens-mode)))
+  :hooks
+  (powershell-mode-hook . (lsp-mode
+                           smartparens-mode))
   :custom
   (powershell-location-of-exe (or (executable-find "pwsh-preview")
                                   (executable-find "pwsh"))))

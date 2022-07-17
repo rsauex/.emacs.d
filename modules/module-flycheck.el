@@ -1,7 +1,8 @@
 (use-package flycheck
   :ensure t
   :commands (flycheck-mode)
-  :hooks ((flycheck-mode-hook . (flycheck-pos-tip-mode flycheck-clojure-setup))))
+  :hooks
+  (flycheck-mode-hook . (flycheck-pos-tip-mode flycheck-clojure-setup)))
 
 (use-package flycheck-pos-tip
   :ensure t

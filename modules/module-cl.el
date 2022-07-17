@@ -9,11 +9,12 @@
 (use-package slime
   :ensure t
   :commands (slime slime-mode slime-connect)
-  :hooks ((slime-mode-hook . (enable-paredit-mode
-                              aggressive-indent-mode))
-          (slime-repl-mode-hook . (enable-paredit-mode
-                                   (lambda () (define-key slime-repl-mode-map
-                                                (read-kbd-macro paredit-backward-delete-key) nil)))))
+  :hooks
+  (slime-mode-hook . (enable-paredit-mode
+                      aggressive-indent-mode))
+  (slime-repl-mode-hook . (enable-paredit-mode
+                           (lambda () (define-key slime-repl-mode-map
+                                        (read-kbd-macro paredit-backward-delete-key) nil))))
   :custom
   (slime-load-failed-fasl 'never)
   (slime-net-coding-system 'utf-8-unix)
@@ -36,8 +37,9 @@
 
 (use-package lisp-mode
   :defer t
-  :hooks ((lisp-mode-hook . (enable-paredit-mode
-                             slime-mode
-                             lispy-mode))))
+  :hooks
+  (lisp-mode-hook . (enable-paredit-mode
+                     slime-mode
+                     lispy-mode)))
 
 (provide 'module-cl)

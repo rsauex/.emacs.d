@@ -18,9 +18,10 @@
 
 (use-package scheme-mode
   :defer t
-  :hooks ((scheme-mode-hook . (enable-paredit-mode
-                               geiser-mode
-                               lispy-mode
-                               aggressive-indent-mode
-                               ws-butler-mode))))
+  :hooks
+  (scheme-mode-hook . (enable-paredit-mode
+                       geiser-mode
+                       lispy-mode
+                       aggressive-indent-mode
+                       ws-butler-mode)))
 (provide 'module-scheme)

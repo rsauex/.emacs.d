@@ -16,32 +16,34 @@
       (set list-var (append before (list thing) after))))
   (symbol-value list-var))
 
+;; Use my own keyword for hooks
 (add-to-list-after 'use-package-keywords :hooks :hook)
+(setq use-package-keywords (remove :hook use-package-keywords))
 
 (defun use-package-normalize/:hooks (name-symbol keyword args)
-  (use-package-only-one (symbol-name keyword) args
-    (lambda (label arg)
-      (cond
-       ((not (listp arg)) (use-package-error ":hooks wants a list"))
-       ((null arg) arg)
-       ((consp (car arg)) arg)
-       ((symbolp (car arg)) 
-        (list (cons (make-symbol (concat (symbol-name name-symbol) "-hook")) arg)))
-       (t
-        (use-package-error
-         ":pin wants an archive name (a string)"))))))
+  (let ((label (symbol-name keyword))
+        (wrong-syntax (lambda ()
+                        (use-package-error
+                         (format "%s whats (<hook> <expr>...) or list of these"
+                                 label)))))
+    (when (null args)
+      (use-package-error (format "%s wants a non-empty list" label)))
+    (let ((results (list)))
+      (dolist (arg args)
+        (pcase arg
+          (`(,hook . ,exprs)
+           (push `(,hook . ,exprs) results))
+          (_ (funcall wrong-syntax))))
+      (reverse results))))
 
-(defun use-package-handler/:hooks (name-symbol keyword archive-name rest state)
-  (let ((body (use-package-process-keywords name-symbol rest state)))
-    (if (null archive-name)
-        body
-      (use-package-concat
-       (mapcar (lambda (hook-list)
-                 (let ((hook (car hook-list))
-                       (functions (cdr hook-list)))
-                   `(my-add-hooks ',hook '(,@functions))))
-               archive-name)
-       body))))
+(defun use-package-handler/:hooks (name-symbol _keyword args rest state)
+  (let ((elems (mapcar (lambda (hook/exprs)
+                         (pcase hook/exprs
+                           (`(,hook . ,exprs)
+                            `(my-add-hooks ',hook '(,@exprs)))))
+                       args))
+        (rest-elems (use-package-process-keywords name-symbol rest state)))
+    (use-package-concat elems rest-elems)))
 
 (add-to-list-after 'use-package-keywords :custom-local :hooks)
 
@@ -49,11 +51,10 @@
   (let* ((label (symbol-name keyword))
          (wrong-syntax (lambda ()
                          (use-package-error
-                          (concat label
-                                  " a (<mode> (<symbol> <value>)...)"
-                                  "  or list of these")))))
+                          (format "%s whats (<mode> (<symbol> <value>)...) or list of these"
+                                  label)))))
     (when (null args)
-      (use-package-error (concat label " wants a non-empty list")))
+      (use-package-error (format "%s wants a non-empty list" label)))
     (let ((make-hook-sym (lambda (sym)
                            (intern (concat (symbol-name sym) "-hook"))))
           (results (list)))

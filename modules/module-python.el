@@ -6,7 +6,8 @@
 
 (use-package python-mode
   :commands (python-mode)
-  :hooks ((python-mode-hook . (lsp-mode
-                               smartparens-mode))))
+  :hooks
+  (python-mode-hook . (lsp-mode
+                       smartparens-mode)))
 
 (provide 'module-python)

@@ -1,8 +1,9 @@
 (use-package markdown-mode
   :commands (markdown-mode)
-  :hooks ((markdown-mode . (smartparens-mode)))
   :mode (("\\.md$" . markdown-mode)
          ("\\.markdown$" . markdown-mode))
+  :hooks
+  (markdown-mode . (smartparens-mode))
   :custom-local
   (markdown-mode . ((imenu-generic-expression markdown-imenu-generic-expression)))
   :custom

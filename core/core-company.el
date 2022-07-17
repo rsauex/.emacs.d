@@ -10,8 +10,8 @@
   :ensure t
   :diminish company-mode
   :hooks
-  ((after-init-hook . (global-company-mode))
-   (company-mode-hook . (company-box-mode)))
+  (after-init-hook . (global-company-mode))
+  (company-mode-hook . (company-box-mode))
   :bind
   (;; Remap completion-at-point
    :map company-mode-map

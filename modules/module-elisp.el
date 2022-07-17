@@ -4,8 +4,9 @@
 
 (use-package emacs-lisp-mode
   :defer t
-  :hooks ((emacs-lisp-mode-hook . (enable-paredit-mode
-                                   aggressive-indent-mode))
-          (ielm-mode-hook . (enable-paredit-mode))))
+  :hooks
+  (emacs-lisp-mode-hook . (enable-paredit-mode
+                           aggressive-indent-mode))
+  (ielm-mode-hook . (enable-paredit-mode)))
 
 (provide 'module-elisp)

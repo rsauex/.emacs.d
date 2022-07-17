@@ -4,8 +4,9 @@
   ;; bash-completion
   (use-package bash-completion
     :commands (bash-completion-dynamic-complete)
-    :hooks ((shell-dynamic-complete-functions . (bash-completion-dynamic-complete))
-            (shell-command-complete-functions . (bash-completion-dynamic-complete))))
+    :hooks
+    (shell-dynamic-complete-functions . (bash-completion-dynamic-complete))
+    (shell-command-complete-functions . (bash-completion-dynamic-complete)))
 
   ;; C-d to kill buffer if process is dead.
   (defun comint-delchar-or-eof-or-kill-buffer (arg)
