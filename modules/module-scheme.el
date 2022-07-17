@@ -3,8 +3,8 @@
 (use-package geiser
   ;; :defer t
   :ensure t
-  :config
-  (setq geiser-active-implementations '(guile)))
+  :custom
+  (geiser-active-implementations '(guile)))
 
 (use-package lispy
   :commands (lispy-mode)

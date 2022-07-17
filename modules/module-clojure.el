@@ -27,8 +27,9 @@
   :hooks ((clojure-mode-hook . (enable-paredit-mode
                                 cider-mode
                                 aggressive-indent-mode
-                                my-lsp-disable-indentation
                                 lsp-deferred)))
+  :custom-local
+  (clojure-mode . ((lsp-enable-indentation nil)))
   :mode (("\\.clj$" . clojure-mode)
          ("\\.cljs$" . clojurescript-mode)
          ("\\.cljc$" . clojurec-mode)))

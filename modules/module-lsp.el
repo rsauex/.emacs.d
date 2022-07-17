@@ -9,7 +9,4 @@
   (lsp-headerline-breadcrumb-enable nil)
   (lsp-completion-show-detail nil))
 
-(defun my-lsp-disable-indentation ()
-  (setq-local lsp-enable-indentation nil))
-
 (provide 'module-lsp)

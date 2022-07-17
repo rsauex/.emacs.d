@@ -1,7 +1,6 @@
 (use-package module-paredit)
 (use-package aggressive-indent :ensure t)
 
-(setq-default inferior-lisp-program "sbcl --dynamic-space-size 5120")
 
 (use-package slime-company
   :defer t
@@ -18,6 +17,7 @@
   :custom
   (slime-load-failed-fasl 'never)
   (slime-net-coding-system 'utf-8-unix)
+  (inferior-lisp-program "sbcl --dynamic-space-size 5120")
   :config (progn
             (slime-setup '(slime-asdf
                            slime-fancy
@@ -30,7 +30,9 @@
 
 (use-package lispy
   :commands (lispy-mode)
-  :ensure t)
+  :ensure t
+  :custom
+  (lispy-colon-p nil))
 
 (use-package lisp-mode
   :defer t
