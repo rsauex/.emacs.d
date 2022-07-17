@@ -91,13 +91,24 @@
   (undo-tree-history-directory-alist
    (list (cons "." (expand-file-name "undo-tree-hist/" my-cache-dir)))))
 
+(csetq
+  (visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)))
+
+(use-package visual-fill-column
+  :ensure t
+  :diminish visual-fill-column-mode
+  :commands (visual-fill-column-mode)
+  :hooks ((visual-line-mode-hook . (visual-fill-column-mode)))
+  :custom
+  (visual-fill-column-width 120)
+  (visual-fill-column-enable-sensible-window-split t)
+  (visual-fill-column-adjust-for-text-scale nil))
+
 (use-package adaptive-wrap
   :ensure t
   :diminish adaptive-wrap-prefix-mode
   :commands (adaptive-wrap-prefix-mode)
-  :hooks ((visual-line-mode-hook . (adaptive-wrap-prefix-mode)))
-  :custom
-  (visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)))
+  :hooks ((visual-line-mode-hook . (adaptive-wrap-prefix-mode))))
 
 ;; Show trailing whitespaces only when visiting a file
 (defun maybe-toggle-show-trailing-whitespace ()
