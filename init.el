@@ -12,6 +12,3 @@
 (use-package module-python)
 (use-package module-scheme)
 (use-package module-clojure)
-
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file 'noerror)

@@ -52,9 +52,6 @@
 ;; Force all packages to create files in cache dir...
 (setq user-emacs-directory my-cache-dir)
 
-;; Set custom.el file
-(setq custom-file (expand-file-name "custom.el" my-emacs-dir))
-
 ;;;; Set up load path ----------------------------------------------------------
 
 (add-to-list 'load-path my-core-dir)
@@ -159,5 +156,10 @@
 (require 'core-package)
 (require 'core-company)
 (require 'core-project)
+
+;;;; Custom --------------------------------------------------------------------
+
+(setq custom-file (expand-file-name "custom.el" my-emacs-dir))
+(load custom-file)
 
 (provide 'core)
