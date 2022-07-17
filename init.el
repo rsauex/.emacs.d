@@ -12,3 +12,4 @@
 (use-package module-python)
 (use-package module-scheme)
 (use-package module-clojure)
+(use-package module-latex)
