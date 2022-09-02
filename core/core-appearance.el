@@ -51,6 +51,10 @@
 (csetq
   (tooltip-mode t))
 
+;; Smooth window resizing
+(csetq
+  (window-resize-pixelwise t))
+
 ;; Customizable window divider (bonus: more distinct doom modeline)
 (csetq
   (window-divider-default-places t)

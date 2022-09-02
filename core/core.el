@@ -155,6 +155,7 @@
 (require 'core-package)
 (require 'core-company)
 (require 'core-project)
+(require 'core-side-windows)
 
 ;;;; Custom --------------------------------------------------------------------
 
