@@ -1,9 +1,31 @@
 ;; -*- lexical-binding: t; -*-
 
+(add-to-list 'window-persistent-parameters
+             '(no-delete-other-windows . writable))
+(add-to-list 'window-persistent-parameters
+             '(no-other-window . writable))
+
+(add-to-list 'window-persistent-parameters
+             '(window-side-selected . writable))
+
 (define-advice window-toggle-side-windows
-    (:before (&rest _) select-mru-window)
-  "Select most recently used window when closing side windows"
-  (select-window (get-mru-window)))
+    (:before (&optional frame) select-mru-window)
+  "Select most recently used window when hiding side windows"
+  (when (window-with-parameter 'window-side nil (window-normalize-frame frame))
+    (when (window-parameter (selected-window) 'window-side)
+      (set-window-parameter (selected-window) 'window-side-selected t))
+    (select-window (get-mru-window))))
+
+(define-advice window-toggle-side-windows
+    (:after (&optional frame) maybe-select-side-window)
+  "Select previously selected side window if there was one when
+showing side windows"
+  (let ((frame (window-normalize-frame frame)))
+    (when (window-with-parameter 'window-side nil frame)
+      (when-let ((window-to-select (window-with-parameter 'window-side-selected nil frame)))
+        (select-window window-to-select))
+      (dolist (window (window-list frame))
+        (set-window-parameter window 'window-side-selected nil)))))
 
 ;; TODO: better key
 (bind-key "C-z" #'window-toggle-side-windows)
