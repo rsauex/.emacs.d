@@ -145,6 +145,21 @@
   (global-auto-revert-non-file-buffers t)
   (auto-revert-verbose nil))
 
+;;;; Windmove ------------------------------------------------------------------
+
+(use-package windmove
+  :demand
+  :custom
+  (windmove-allow-all-windows t)
+  ;; Select window
+  (windmove-default-keybindings             `(,(kbd "")    . (super)))
+  ;; Move window
+  (windmove-swap-states-default-keybindings `(,(kbd "")    . (super shift)))
+  ;; Delete window
+  (windmove-delete-default-keybindings      `(,(kbd "")    . (super control)))
+  ;; Next display buffer in window
+  (windmove-display-default-keybindings     `(,(kbd "C-x") . (super))))
+
 ;;;; Other core packages -------------------------------------------------------
 
 (require 'core-fonts)
