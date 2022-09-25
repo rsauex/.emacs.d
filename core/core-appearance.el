@@ -124,4 +124,32 @@
                  my-light-theme)))
     (csetq (custom-enabled-themes (list theme)))))
 
+;; Beacon
+
+(require 'pulse)
+
+(defface my-pulse-face
+  '((t :inherit pulse-highlight-start-face :extend t))
+  "Face used at beginning of a highlight extended to full width.")
+
+(defun my-pulse-momentary-highlight-current-line (&rest _)
+  (when (or (minibufferp)
+            (not (string-prefix-p " " (buffer-name (window-buffer (selected-window))))))
+    (let ((o (make-overlay (line-beginning-position) (line-beginning-position 2))))
+      ;; Only in selected window
+      (overlay-put o 'window (selected-window))
+      ;; Mark it for deletion
+      (overlay-put o 'pulse-delete t)
+      ;; Pulse overlay
+      (pulse-momentary-highlight-overlay o 'my-pulse-face))))
+
+(dolist (command '(scroll-up-command
+                   scroll-down-command
+                   recenter-top-bottom
+                   other-window
+                   after-focus-change-function))
+  (advice-add command :after #'my-pulse-momentary-highlight-current-line))
+
+(add-hook 'window-configuration-change-hook #'my-pulse-momentary-highlight-current-line)
+
 (provide 'core-appearance)
