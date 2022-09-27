@@ -36,6 +36,8 @@
   :hooks
   (lisp-mode-hook . (enable-paredit-mode
                      slime-mode
-                     lispy-mode)))
+                     lispy-mode))
+  (lisp-data-mode-hook . (enable-paredit-mode
+                          lispy-mode)))
 
 (provide 'module-cl)
