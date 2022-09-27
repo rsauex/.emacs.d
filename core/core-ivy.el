@@ -9,6 +9,7 @@
   (suggest-key-bindings nil)
   (ivy-use-virtual-buffers t)
   (ivy-count-format "(%d/%d) ")
+  (ivy-fixed-height-minibuffer t)
   (ivy-mode t))
 
 (provide 'core-ivy)
