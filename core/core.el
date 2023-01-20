@@ -68,8 +68,9 @@
 
 ;;;; Encoding ------------------------------------------------------------------
 
-(set-language-environment 'utf-8)
-(csetq (default-input-method nil)) ;; `set-language-environment' sets `default-input-method', which is unwanted
+(csetq
+  (default-input-method nil) ;; `current-language-environment' sets `default-input-method', which is unwanted
+  (current-language-environment 'utf-8))
 
 ;;;; Backups -------------------------------------------------------------------
 
