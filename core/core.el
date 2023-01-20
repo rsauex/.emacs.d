@@ -34,20 +34,11 @@
 (defconst my-core-dir
   (expand-file-name "core/" my-emacs-dir))
 
-(defconst my-settings-dir
-  (expand-file-name "settings/" my-emacs-dir))
-
 (defconst my-modules-dir
   (expand-file-name "modules/" my-emacs-dir))
 
 (defconst my-cache-dir
   (expand-file-name ".cache/" my-emacs-dir))
-
-(defconst my-backup-dir
-  (expand-file-name "backups/" my-cache-dir))
-
-(defconst my-package-dir
-  (expand-file-name "elpa/" my-cache-dir))
 
 ;; Force all packages to create files in cache dir...
 (setq user-emacs-directory my-cache-dir)
@@ -55,7 +46,6 @@
 ;;;; Set up load path ----------------------------------------------------------
 
 (add-to-list 'load-path my-core-dir)
-(add-to-list 'load-path my-settings-dir)
 (add-to-list 'load-path my-modules-dir)
 
 ;;;; Simple customize-set-variable ---------------------------------------------
@@ -84,7 +74,7 @@
 ;;;; Backups -------------------------------------------------------------------
 
 (csetq
-  (backup-directory-alist `(("." . ,my-backup-dir)))
+  (backup-directory-alist `(("." . ,(expand-file-name "backup/" my-cache-dir))))
   (delete-old-versions t)
   (kept-new-versions 6)
   (kept-old-versions 2)
