@@ -1,7 +1,8 @@
 ;; -*- lexical-binding: t; -*-
 
 (csetq
-  (use-package-always-defer t))
+  (use-package-always-defer t)
+  (use-package-use-theme nil))
 
 (unless (require 'use-package nil 'noerror)
   (package-refresh-contents)
