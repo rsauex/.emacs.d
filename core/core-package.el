@@ -6,9 +6,9 @@
 (csetq
   (package-user-dir (expand-file-name "elpa/" my-cache-dir))
   (package-gnupghome-dir (expand-file-name "elpa/gnupg/" my-cache-dir))
-  (package-archives '(("gnu"   . "http://elpa.gnu.org/packages/")
-                      ("melpa" . "http://melpa.org/packages/")
-                      ("org"   . "http://orgmode.org/elpa/"))))
+  (package-archives `(,@package-archives
+                      ("melpa" . "https://melpa.org/packages/")
+                      ("org"   . "https://orgmode.org/elpa/"))))
 
 (package-initialize)
 
