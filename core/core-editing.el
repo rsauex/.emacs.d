@@ -46,6 +46,11 @@
   (enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode 1))
 
+;; Do not allow the cursor in the minibuffer prompt
+(csetq
+  (minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt)))
+(add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
 ;; Run at full power please
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)

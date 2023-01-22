@@ -12,8 +12,6 @@
   :custom
   (suggest-key-bindings nil)
   (vertico-resize nil)
-  ;; Do not allow the cursor in the minibuffer prompt
-  (minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt))
   ;; Better directory navigation
   :bind ((:map vertico-map)
          ("RET"   . vertico-directory-enter)
@@ -22,8 +20,6 @@
   :hooks
   ;; Tidy shadowed file names
   (rfn-eshadow-update-overlay vertico-directory-tidy)
-  ;; Do not allow the cursor in the minibuffer prompt
-  (minibuffer-setup-hook cursor-intangible-mode)
   :init
   (vertico-mode 1)
   (vertico-multiform-mode 1)
