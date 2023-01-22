@@ -156,6 +156,8 @@
 (require 'core-fonts)
 (require 'core-appearance)
 (require 'core-dired)
+(require 'core-orderless)
+(require 'core-vertico)
 (require 'core-ivy)
 (require 'core-editing)
 (require 'core-package)

@@ -43,7 +43,8 @@
 
 ;; Disable recursive minibuffers
 (csetq
-  (enable-recursive-minibuffers nil))
+  (enable-recursive-minibuffers t)
+  (minibuffer-depth-indicate-mode 1))
 
 ;; Run at full power please
 (put 'downcase-region 'disabled nil)
