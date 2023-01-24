@@ -1,6 +1,9 @@
 (use-package paredit
   :ensure t
   :diminish paredit-mode
+  :bind
+  ((:map paredit-mode-map)
+   ("RET" . nil))
   :config
   (defun paredit-wrap-round-from-behind ()
     (interactive)
