@@ -160,8 +160,7 @@
 (require 'core-vertico)
 (require 'core-ivy)
 (require 'core-editing)
-(require 'core-package)
-(require 'core-company)
+(require 'core-corfu)
 (require 'core-project)
 (require 'core-side-windows)
 
