@@ -20,7 +20,7 @@
          ("M-DEL" . vertico-directory-delete-word))
   :hooks
   ;; Tidy shadowed file names
-  (rfn-eshadow-update-overlay vertico-directory-tidy)
+  (rfn-eshadow-update-overlay-hook vertico-directory-tidy)
   :init
   (vertico-mode 1)
   (vertico-multiform-mode 1)
