@@ -14,7 +14,8 @@
   (vertico-resize nil)
   ;; Better directory navigation
   :bind ((:map vertico-map)
-         ("RET"   . vertico-directory-enter)
+         ("C-M-j" . vertico-exit-input)
+         ("C-j"   . vertico-directory-enter)
          ("DEL"   . vertico-directory-delete-char)
          ("M-DEL" . vertico-directory-delete-word))
   :hooks
