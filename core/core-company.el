@@ -17,6 +17,8 @@
    :map company-mode-map
    ("C-M-i" . company-complete))
   :custom
-  (company-tooltip-align-annotations t))
+  (company-tooltip-align-annotations t)
+  :config
+  (add-to-list 'company-backends 'company-capf))
 
 (provide 'core-company)
