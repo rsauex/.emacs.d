@@ -136,20 +136,53 @@
   (global-auto-revert-non-file-buffers t)
   (auto-revert-verbose nil))
 
-;;;; Windmove ------------------------------------------------------------------
+;;;; Ace Window ----------------------------------------------------------------
 
-(use-package windmove
-  :demand
+(use-package posframe
+  :ensure t)
+
+(use-package ace-window
+  :ensure t
+  :bind (("M-o". ace-window))
   :custom
-  (windmove-allow-all-windows t)
-  ;; Select window
-  (windmove-default-keybindings             `(,(kbd "")    . (super)))
-  ;; Move window
-  (windmove-swap-states-default-keybindings `(,(kbd "")    . (super shift)))
-  ;; Delete window
-  (windmove-delete-default-keybindings      `(,(kbd "")    . (super control)))
-  ;; Next display buffer in window
-  (windmove-display-default-keybindings     `(,(kbd "C-x") . (super))))
+  ;; Behave the same way regardless of the number of windows
+  (aw-dispatch-always t)
+  ;; Use postframe to display leading chars
+  (ace-window-posframe-mode t)
+  :custom-face
+  ;; Use a much bigger font to display leading chars
+  (aw-leading-char-face ((t (:height 5.0))))
+
+  :init
+  (defun my/ace-window-in-direction-or-error (direction)
+    "Makes ace-window to use a window relative to the currect window
+or throws an error when no window in that direction exists."
+    (let ((window (window-in-direction direction (selected-window) t)))
+      (unless window
+        (if (or (eq direction 'left)
+                (eq direction 'right))
+            (error "No window to the %s" direction)
+          (error "No window %s" direction)))
+      (throw 'done (cons ?_ window))))
+
+  (defun my/ace-window-left ()
+    (my/ace-window-in-direction-or-error 'left))
+
+  (defun my/ace-window-right ()
+    (my/ace-window-in-direction-or-error 'right))
+
+  (defun my/ace-window-below ()
+    (my/ace-window-in-direction-or-error 'below))
+
+  (defun my/ace-window-above ()
+    (my/ace-window-in-direction-or-error 'above))
+
+  :config
+  ;; Use `htns' keys for windows relative to the current windows
+  (setf (alist-get ?h aw-dispatch-alist) (list #'my/ace-window-left)
+        (alist-get ?t aw-dispatch-alist) (list #'my/ace-window-below)
+        (alist-get ?n aw-dispatch-alist) (list #'my/ace-window-above)
+        (alist-get ?s aw-dispatch-alist) (list #'my/ace-window-right)))
 
 ;;;; Other core packages -------------------------------------------------------
 
