@@ -59,9 +59,7 @@
                     org-variable-pitch-minor-mode))
   :custom-local
   (org-mode . (;; Bar cursor in org-mode
-               (cursor-type 'bar)
-               ;; Enable Ispell completion
-               (company-backends (cons 'company-ispell company-backends))))
+               (cursor-type 'bar)))
   :custom
   ;; Don't ruin S-arrow to switch windows please (use M-+ and M-- instead to toggle)
   (org-replace-disputed-keys t)

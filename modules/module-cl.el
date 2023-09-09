@@ -1,10 +1,6 @@
 (require 'module-paredit)
 (require 'module-aggressive-indent)
 
-
-(use-package slime-company
-  :ensure t)
-
 (use-package slime
   :ensure t
   :hooks
@@ -21,7 +17,6 @@
             (slime-setup '(slime-asdf
                            slime-fancy
                            slime-indentation
-                           slime-company
                            slime-sprof
                            ;; slime-snapshot
                            slime-tramp
