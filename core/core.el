@@ -1,31 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-;;;; GC ------------------------------------------------------------------------
-
-(defconst my-gc-cons-threshold-suspended
-  most-positive-fixnum)
-
-(defconst my-gc-cons-threshold-normal
-  (* 16 1024 1024))
-
-;; Functions to suspend/resume GC
-
-(defun my--suspend-gc ()
-  (setq gc-cons-threshold my-gc-cons-threshold-suspended))
-
-(defun my--resume-gc ()
-  (setq gc-cons-threshold my-gc-cons-threshold-normal))
-
-;; Suspend GC while in minibuffer
-
-(add-hook 'minibuffer-setup-hook #'my--suspend-gc)
-(add-hook 'minibuffer-exit-hook #'my--resume-gc)
-
-;; Suspend GC during startup
-
-(my--suspend-gc)
-(add-hook 'emacs-startup-hook 'my--resume-gc)
-
 ;;;; Directories ---------------------------------------------------------------
 
 (defconst my-emacs-dir
