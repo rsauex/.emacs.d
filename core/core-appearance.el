@@ -94,6 +94,7 @@
 (use-package doom-modeline
   :ensure t
   :custom
+  (doom-modeline-major-mode-icon nil)
   (doom-modeline-height 30)
   (doom-modeline-mode 1))
 
