@@ -1,17 +1,16 @@
 (require 'module-paredit)
-(require 'module-lsp)
 (require 'module-aggressive-indent)
+(require 'module-eglot)
 
 (use-package cider
   :ensure t
   :hooks
   (cider-repl-mode-hook . (enable-paredit-mode))
-  (cider-mode-hook . (disable-cider-completion
-                      disable-cider-xref
+  (cider-mode-hook . (my/cider--disable-completion
+                      my/cider--disable-xref
                       my/cider--setup-eldoc))
-  :custom-local
-  (cider-mode . ((lsp-enable-indentation nil)))
   :custom
+  ;; TODO: (cider-repl-history-file ".cider-repl-history")
   (cider-repl-history-file (expand-file-name "cider-history" my-cache-dir))
   (cider-repl-history-size 1000)
   (cider-font-lock-dynamically nil)
@@ -20,9 +19,11 @@
   (cider-print-options '(("length" 20)))
   (cider-eldoc-display-for-symbol-at-point t)
   :init
-  (defun disable-cider-completion ()
+  (defun my/cider--disable-completion ()
+    "Use completion provided by LSP."
     (remove-hook 'completion-at-point-functions #'cider-complete-at-point t))
-  (defun disable-cider-xref ()
+  (defun my/cider--disable-xref ()
+    "Use xref provided by LSP."
     (remove-hook 'xref-backend-functions #'cider--xref-backend t))
   (defun my/cider--setup-eldoc ()
     "Cider's eldoc function should have higher priority than the LSP's one."
@@ -36,6 +37,14 @@
   (clojure-mode-hook . (enable-paredit-mode
                         cider-mode
                         aggressive-indent-mode
-                        lsp-deferred)))
+                        eglot-ensure))
+  :custom-local
+  (clojure-mode . (;; Make sure that CIDER is used for indentation.
+                   (eglot-ignored-server-capabilities '(:documentFormattingProvider
+                                                        :documentRangeFormattingProvider
+                                                        :documentOnTypeFormattingProvider))
+                   ;; Don't change eldoc display strategy. CIDER
+                   ;; provide more accurate arglists.
+                   (eglot-stay-out-of '(eldoc-documentation-strategy)))))
 
 (provide 'module-clojure)
