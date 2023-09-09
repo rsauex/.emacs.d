@@ -2,9 +2,11 @@
 (require 'module-aggressive-indent)
 
 (use-package geiser
+  :ensure t)
+
+(use-package geiser-guile
   :ensure t
-  :custom
-  (geiser-active-implementations '(guile)))
+  :commands (geiser-guile))
 
 (use-package lispy
   :ensure t)
