@@ -1,4 +1,4 @@
-(require 'core (concat user-emacs-directory "core/core"))
+(require 'core)
 
 (require 'module-rgrep)
 (require 'module-org)
