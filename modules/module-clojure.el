@@ -10,8 +10,7 @@
                       my/cider--disable-xref
                       my/cider--setup-eldoc))
   :custom
-  ;; TODO: (cider-repl-history-file ".cider-repl-history")
-  (cider-repl-history-file (expand-file-name "cider-history" my-cache-dir))
+  (cider-repl-history-file ".cider-repl-history")
   (cider-repl-history-size 1000)
   (cider-font-lock-dynamically nil)
   (cider-repl-use-clojure-font-lock nil)
