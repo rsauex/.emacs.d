@@ -27,8 +27,9 @@ showing side windows"
       (dolist (window (window-list frame))
         (set-window-parameter window 'window-side-selected nil)))))
 
-;; TODO: better key
-(bind-key "C-z" #'window-toggle-side-windows)
+(bind-keys :prefix-map side-window-prefix-map
+           :prefix "C-z"
+           ("C-z" . window-toggle-side-windows))
 
 (defconst my-default-side-window-parameters
   '((side . bottom)
@@ -44,6 +45,14 @@ showing side windows"
     (setf (alist-get criterion display-buffer-alist nil nil #'equal) entry)
     nil))
 
-(add-side-windows-rule "^\\*")
+(defvar my-inhibit-side-window-special nil)
+(make-local-variable 'my-inhibit-side-window-special)
+
+(defun my-display-in-side-window-special-p (buffer-name action)
+  (and (string-match-p "^\\*" buffer-name)
+       (with-current-buffer buffer-name
+         (not my-inhibit-side-window-special))))
+
+(add-side-windows-rule #'my-display-in-side-window-special-p)
 
 (provide 'core-side-windows)
