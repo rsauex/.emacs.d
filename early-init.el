@@ -19,3 +19,13 @@
 
 (add-to-list 'load-path my-core-dir)
 (add-to-list 'load-path my-modules-dir)
+
+;;;; Setup GUI early -----------------------------------------------------------
+
+(setq-default
+  menu-bar-mode nil
+  tool-bar-mode nil
+  scroll-bar-mode nil
+  use-dialog-box nil)
+
+(add-to-list 'default-frame-alist '(font . "Monospace-12"))
