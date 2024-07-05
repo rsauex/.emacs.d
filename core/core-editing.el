@@ -113,7 +113,14 @@
   :ensure t
   :diminish adaptive-wrap-prefix-mode
   :hooks
-  (visual-line-mode-hook . (adaptive-wrap-prefix-mode)))
+  (visual-line-mode-hook . (adaptive-wrap-prefix-mode-unless-incompatible))
+  :init
+  (defvar adaptive-warp-incompatible-major-modes
+    '(org-mode))
+
+  (defun adaptive-wrap-prefix-mode-unless-incompatible (on-off)
+    (unless (member major-mode adaptive-warp-incompatible-major-modes)
+      (adaptive-wrap-prefix-mode on-off))))
 
 ;; Show trailing whitespaces only when visiting a file
 (defun maybe-toggle-show-trailing-whitespace ()
