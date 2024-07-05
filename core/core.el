@@ -95,7 +95,7 @@
 
 (use-package ace-window
   :ensure t
-  :bind (("M-o". ace-window))
+  :bind* (("M-o". ace-window))
   :custom
   ;; Behave the same way regardless of the number of windows
   (aw-dispatch-always t)
