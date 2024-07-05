@@ -54,9 +54,10 @@
   (org-bullets-bullet-list '("› ")))
 
 (use-package org-mode
-  :hooks
-  (org-mode-hook . (org-bullets-mode
-                    org-variable-pitch-minor-mode))
+  :extra-modes
+  (org-mode . (org-bullets-mode
+               org-variable-pitch-minor-mode
+               visual-line-mode))
   :custom-local
   (org-mode . (;; Bar cursor in org-mode
                (cursor-type 'bar)))

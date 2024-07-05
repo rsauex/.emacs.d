@@ -4,8 +4,8 @@
 (use-package lsp-python-ms :ensure t)
 
 (use-package python-mode
-  :hooks
-  (python-mode-hook . (lsp-mode
-                       smartparens-mode)))
+  :extra-modes
+  (python-mode . (lsp-mode
+                  smartparens-mode)))
 
 (provide 'module-python)

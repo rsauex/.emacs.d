@@ -7,9 +7,9 @@
                     (executable-find "pwsh"))))
 
 (use-package powershell :ensure t
-  :hooks
-  (powershell-mode-hook . (lsp-mode
-                           smartparens-mode))
+  :extra-modes
+  (powershell-mode . (lsp-mode
+                      smartparens-mode))
   :custom
   (powershell-location-of-exe (or (executable-find "pwsh-preview")
                                   (executable-find "pwsh"))))

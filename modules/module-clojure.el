@@ -5,10 +5,11 @@
 (use-package cider
   :ensure t
   :hooks
-  (cider-repl-mode-hook . (enable-paredit-mode))
   (cider-mode-hook . (my/cider--disable-completion
                       my/cider--disable-xref
                       my/cider--setup-eldoc))
+  :extra-modes
+  (cider-repl-mode . (paredit-mode))
   :custom
   ;; TODO: (cider-repl-history-file ".cider-repl-history")
   (cider-repl-history-file (expand-file-name "cider-history" my-cache-dir))
@@ -34,10 +35,11 @@
   :ensure t
   :diminish (clojure-mode . "Clj")
   :hooks
-  (clojure-mode-hook . (enable-paredit-mode
-                        cider-mode
-                        aggressive-indent-mode
-                        eglot-ensure))
+  (clojure-mode-hook . (eglot-ensure))
+  :extra-modes
+  (clojure-mode . (paredit-mode
+                   cider-mode
+                   aggressive-indent-mode))
   :custom-local
   (clojure-mode . (;; Make sure that CIDER is used for indentation.
                    (eglot-ignored-server-capabilities '(:documentFormattingProvider

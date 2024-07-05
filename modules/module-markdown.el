@@ -1,7 +1,7 @@
 (use-package markdown-mode
   :mode (("\\.md$" . markdown-mode)
          ("\\.markdown$" . markdown-mode))
-  :hooks
+  :extra-modes
   (markdown-mode . (smartparens-mode))
   :custom-local
   (markdown-mode . ((imenu-generic-expression markdown-imenu-generic-expression)))

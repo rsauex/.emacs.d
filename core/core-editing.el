@@ -102,8 +102,8 @@
 (use-package visual-fill-column
   :ensure t
   :diminish visual-fill-column-mode
-  :hooks
-  (visual-line-mode-hook . (visual-fill-column-mode))
+  :extra-modes
+  (visual-line-mode . (visual-fill-column-mode))
   :custom
   (visual-fill-column-width 120)
   (visual-fill-column-enable-sensible-window-split t)
@@ -112,8 +112,8 @@
 (use-package adaptive-wrap
   :ensure t
   :diminish adaptive-wrap-prefix-mode
-  :hooks
-  (visual-line-mode-hook . (adaptive-wrap-prefix-mode-unless-incompatible))
+  :extra-modes
+  (visual-line-mode . (adaptive-wrap-prefix-mode-unless-incompatible))
   :init
   (defvar adaptive-warp-incompatible-major-modes
     '(org-mode))

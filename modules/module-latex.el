@@ -1,5 +1,5 @@
 (use-package tex-mode
-  :hooks
-  (latex-mode-hook . (visual-line-mode)))
+  :extra-modes
+  (latex-mode . (visual-line-mode)))
 
 (provide 'module-latex)

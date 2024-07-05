@@ -2,8 +2,8 @@
   :ensure t)
 
 (use-package c-mode
-  :hooks
-  (c-mode-hook . (ggtags-mode))
+  :extra-modes
+  (c-mode . (ggtags-mode))
   :custom-local
   (c-mode . ((tab-width 4)
              (indent-tabs-mode t)))
