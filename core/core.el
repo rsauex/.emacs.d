@@ -100,7 +100,7 @@
   ;; Behave the same way regardless of the number of windows
   (aw-dispatch-always t)
   ;; Use postframe to display leading chars
-  (ace-window-posframe-mode t)
+  (ace-window-posframe-mode (posframe-workable-p))
   :custom-face
   ;; Use a much bigger font to display leading chars
   (aw-leading-char-face ((t (:height 5.0))))
