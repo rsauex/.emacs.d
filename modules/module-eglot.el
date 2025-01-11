@@ -21,6 +21,22 @@
          ("C-c l r r" . eglot-rename)
          ("C-c l a a" . eglot-code-actions)))
 
+(use-package eglot-supplements
+  :vc (eglot-supplements :url "https://codeberg.org/harald/eglot-supplements"))
+
+(use-package eglot-marocc ;; from eglot-supplements
+  :commands (eglot-marocc-request-highlights
+             eglot-marocc-goto-next-highlight
+             eglot-marocc-goto-previous-highlight)
+  :custom-face
+  (eglot-marocc-occurence-text ((t (:inherit highlight :foreground "black"))))
+  :bind ((:map eglot-mode-map)
+         ("C-c l a h" . eglot-marocc-request-highlights)
+         ;; TODO:
+         ;; ("??" . eglot-marocc-goto-next-highlight)
+         ;; ("??" . eglot-marocc-goto-previous-highlight)
+         ))
+
 ;; https://github.com/joaotavora/eglot/issues/661
 (use-package jarchive
   :ensure t
