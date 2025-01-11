@@ -62,19 +62,6 @@
   (window-divider-default-right-width 1)
   (window-divider-mode t))
 
-;; Scroll
-(csetq
-  (hscroll-margin 1)
-  (hscroll-step 1)
-  (scroll-conservatively 1001)
-  (scroll-margin 0)
-  (scroll-preserve-screen-position t))
-
-;; Mouse scroll
-(csetq
-  (mouse-wheel-scroll-amount '(5 ((shift) . 2)))  ; one line at a time
-  (mouse-wheel-progressive-speed nil))            ; don't accelerate scrolling
-
 ;; Initial buffer
 (csetq
   (initial-buffer-choice t)
@@ -152,5 +139,35 @@
   (advice-add command :after #'my-pulse-momentary-highlight-current-line))
 
 (add-hook 'window-configuration-change-hook #'my-pulse-momentary-highlight-current-line)
+
+;; Scrolling
+
+(use-package ultra-scroll
+  :vc (ultra-scroll :url "https://github.com/jdtsmith/ultra-scroll")
+  :custom
+
+  ;; --- Regular scrolling
+  ;; Smooth horizontal scrolling
+  (hscroll-margin 0) ;; allow the point to get right to the edge
+  (hscroll-step 1)   ;; scroll one column at a time
+  ;; Smooth vertical scrolling
+  (scroll-margin 0) ;; allow the point to get right to the edge
+  (scroll-conservatively 101) ;; scroll just enough to bring point into view
+  ;; Preserve cursor position when scrolling
+  (scroll-preserve-screen-position t)
+
+  ;; --- Mouse scrolling
+  ;; Scroll with mouse faster
+  (mouse-wheel-scroll-amount '(5 ;; scroll 5 lines at a time
+                               ((shift) . hscroll) ;; (S-) scroll horizontally when holding
+                               ((meta) . nil) ;; (M-) scroll by screens
+                               ((control meta) . global-text-scale) ;; (C-M-) zoom all windows
+                               ((control) . text-scale))) ;; (C-) zoom window under cursor
+  (mouse-wheel-scroll-amount-horizontal 5) ;; scroll 5 columns at a time
+  (mouse-wheel-progressive-speed nil) ;; disable acceleration
+
+  ;; --- Ultra scroll mode
+  ;; Enable pixel-wise scrolling
+  (ultra-scroll-mode 1))
 
 (provide 'core-appearance)
