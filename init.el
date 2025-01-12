@@ -13,3 +13,6 @@
 (require 'module-scheme)
 (require 'module-clojure)
 (require 'module-latex)
+
+;; This comment prevents some emcs versions from inserting
+;; (package-initialize) into the init.el.

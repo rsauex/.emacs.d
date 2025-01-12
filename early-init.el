@@ -29,3 +29,9 @@
   use-dialog-box nil)
 
 (add-to-list 'default-frame-alist '(font . "Monospace-12"))
+
+;;;; Setup Package early -------------------------------------------------------
+
+;; Don't init package system automatically because it will be inited
+;; manually once it's preperly configured.
+(setq package-enable-at-startup nil)
