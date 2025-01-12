@@ -7,8 +7,7 @@
   (package-user-dir (expand-file-name "elpa/" my-cache-dir))
   (package-gnupghome-dir (expand-file-name "elpa/gnupg/" my-cache-dir))
   (package-archives `(,@package-archives
-                      ("melpa" . "https://melpa.org/packages/")
-                      ("org"   . "https://orgmode.org/elpa/")))
+                      ("melpa" . "https://melpa.org/packages/")))
   (package-install-upgrade-built-in t))
 
 (package-initialize)
