@@ -74,6 +74,14 @@
   :custom
   (uniquify-buffer-name-style 'forward))
 
+(use-package buffer-name-relative
+  :ensure t
+  :custom
+  (buffer-name-relative-mode 1)
+  (buffer-name-relative-prefix '("<" . ">/"))
+  (buffer-name-relative-root-functions (list 'buffer-name-relative-root-path-from-vc
+                                             (cl-constantly "~/"))))
+
 ;;;; Tramp ---------------------------------------------------------------------
 
 (use-package tramp
