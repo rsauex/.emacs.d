@@ -14,5 +14,7 @@
 (require 'module-clojure)
 (require 'module-latex)
 
+(load custom-file)
+
 ;; This comment prevents some emcs versions from inserting
 ;; (package-initialize) into the init.el.

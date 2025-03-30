@@ -157,9 +157,4 @@ or throws an error when no window in that direction exists."
 (require 'core-project)
 (require 'core-side-windows)
 
-;;;; Custom --------------------------------------------------------------------
-
-(setq custom-file (expand-file-name "custom.el" my-emacs-dir))
-(load custom-file)
-
 (provide 'core)
