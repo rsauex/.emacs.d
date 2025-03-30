@@ -23,6 +23,17 @@
 (add-to-list 'load-path my-core-dir)
 (add-to-list 'load-path my-modules-dir)
 
+;;;; Setup native compilation --------------------------------------------------
+
+(when (and (fboundp 'native-comp-available-p) (native-comp-available-p))
+  ;; TODO: For some reason this make emacs recompile all the installed
+  ;; packages on every startup...
+  ;; (push (expand-file-name "eln-cache/" my-cache-dir) native-comp-eln-load-path)
+  (setq-default
+   native-comp-async-report-warnings-errors nil
+   native-comp-deferred-compilation t
+   native-comp-jit-compilation t))
+
 ;;;; Setup GUI early -----------------------------------------------------------
 
 (setq-default
@@ -38,3 +49,7 @@
 ;; Don't init package system automatically because it will be inited
 ;; manually once it's preperly configured.
 (setq package-enable-at-startup nil)
+
+;; Native compile packages when they're installed.
+(when (and (fboundp 'native-comp-available-p) (native-comp-available-p))
+  (setq package-native-compile t))
