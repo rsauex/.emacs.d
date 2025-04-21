@@ -13,6 +13,7 @@
 (require 'module-scheme)
 (require 'module-clojure)
 (require 'module-latex)
+(require 'module-mu4e)
 
 (load custom-file)
 

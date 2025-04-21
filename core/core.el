@@ -144,6 +144,30 @@ or throws an error when no window in that direction exists."
         (alist-get ?n aw-dispatch-alist) (list #'my/ace-window-above)
         (alist-get ?s aw-dispatch-alist) (list #'my/ace-window-right)))
 
+;;;; Popup Frames --------------------------------------------------------------
+
+;; TODO: simplify/rewrite
+;; TODO: move to a more appropriate place
+
+(defmacro define-popup-frame-fns (name fns exit-fns)
+  (declare (indent 1))
+  `(progn
+     ,@(mapcar (lambda (fn)
+                 `(defun ,(intern (concat (symbol-name fn) "-popup-frame")) (&rest args)
+                    (set-frame-parameter nil 'my-window-popup-frame ',name)
+                    (apply #'funcall-interactively #',fn args)))
+               fns)
+     ,@(mapcar (lambda (fn)
+                 `(define-advice ,fn
+                      (:after (&rest _args) ,(intern (concat (symbol-name name) "-delete-frame-if-popup")))
+                    (when (eq ',name (frame-parameter nil 'my-window-popup-frame))
+                      (delete-frame))))
+               exit-fns)))
+
+(define-popup-frame-fns calc
+  (full-calc)
+  (calc-quit))
+
 ;;;; Other core packages -------------------------------------------------------
 
 (require 'core-fonts)
