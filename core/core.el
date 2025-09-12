@@ -168,6 +168,13 @@ or throws an error when no window in that direction exists."
   (full-calc)
   (calc-quit))
 
+;;;; Auth ----------------------------------------------------------------------
+
+(use-package auth-source
+  :custom
+  ;; Use Secrets API
+  (auth-sources '(default)))
+
 ;;;; Other core packages -------------------------------------------------------
 
 (require 'core-fonts)
