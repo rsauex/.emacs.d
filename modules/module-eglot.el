@@ -72,10 +72,11 @@ duplicate."
          ;; ("??" . eglot-marocc-goto-previous-highlight)
          ))
 
+;; TODO: not the best place to put this...
 ;; https://github.com/joaotavora/eglot/issues/661
 (use-package jarchive
   :ensure t
-  :init
-  (jarchive-setup))
+  :custom
+  (jarchive-mode 1))
 
 (provide 'module-eglot)
