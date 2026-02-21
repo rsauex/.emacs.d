@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (require 'module-paredit)
 (require 'module-aggressive-indent)
 

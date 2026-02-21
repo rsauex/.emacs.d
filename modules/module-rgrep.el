@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (require 's)
 
 (defun rgrep-fullscreen (regexp &optional files dir confirm)

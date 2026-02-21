@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (defun myorg-update-parent-cookie ()
   (when (equal major-mode 'org-mode)
     (save-excursion

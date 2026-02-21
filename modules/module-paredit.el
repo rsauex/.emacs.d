@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package paredit
   :ensure t
   :diminish paredit-mode
