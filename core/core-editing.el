@@ -68,7 +68,11 @@
   (hes-mode t))
 
 (use-package multiple-cursors
-  :ensure t)
+  :ensure t
+  :bind ((:prefix-map my-multiple-cursors-prefix-map)
+         (:prefix "C-x m")
+         ("l" . mc/edit-lines)
+         ("|" . mc/vertical-align)))
 
 (use-package ace-jump-mode
   :ensure t
