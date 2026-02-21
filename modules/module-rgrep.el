@@ -100,7 +100,8 @@
           (add-to-list 'grep-match-positions (set-marker (make-marker) (match-beginning 1))))))))
 
 (eval-after-load "grep"
-  '(defadvice grep-mode (after grep-register-match-positions activate)
+  '(define-advice grep-mode
+       (:after (&rest _args) grep-register-match-positions)
      (add-hook 'compilation-filter-hook 'grep-register-match-positions nil t)))
 
 (defun mc/add-cursors-to-all-matches ()

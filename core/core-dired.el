@@ -15,13 +15,17 @@
     :init (diredfl-global-mode))
 
   ;; Reload dired after making changes
-  (defadvice dired-do-rename (after revert-buffer activate)
+  (define-advice dired-do-rename
+      (:after (&rest _args) revert-buffer)
     (revert-buffer))
-  (defadvice dired-do-copy (after revert-buffer activate)
+  (define-advice dired-do-copy
+      (:after (&rest _args) revert-buffer)
     (revert-buffer))
-  (defadvice dired-create-directory (after revert-buffer activate)
+  (define-advice dired-create-directory
+      (:after (&rest _args) revert-buffer)
     (revert-buffer))
-  (defadvice wdired-abort-changes (after revert-buffer activate)
+  (define-advice wdired-abort-changes
+      (:after (&rest _args) revert-buffer)
     (revert-buffer))
 
   ;; C-a is nicer in dired if it moves back to start of files
@@ -65,4 +69,3 @@
   (define-key dired-mode-map (kbd "<f6>") 'dired-do-rename))
 
 (provide 'core-dired)
- 
